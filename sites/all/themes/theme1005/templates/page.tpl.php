@@ -79,110 +79,7 @@ endif; ?>
 <?php endif; ?>
 <a href="#content" class="element-invisible element-focusable"><?php print t( 'Skip to main content' ); ?></a>
 
-<?php
-$path = current_path();
-if ($path==="node/1")
-{?>
-		<!-- Header
-		======================================================================================= -->
-		<header id="header" class="header page-header clearfix" role="banner">
-			<!-- Region Header Top -->
-			<?php if ( $page['header_top'] ) : ?>
-				<div class="container-12">
-					<div class="grid-12">
-						<?php print render( $page['header_top'] ); ?>
-					</div>
-				</div>
-			<?php endif; ?>
 
-			<div class="<?php if ( theme_get_setting( 'theme1005_sticky_menu' ) ) { echo 'stickup '; } ?>header-section-1"> <!-- Sticky menu wrapper -->
-				<div class="container-12">
-					<div class="grid-12">
-						<div class="col1">
-							<!-- Logo -->
-							<?php if ( $logo || $site_name || $site_slogan ) :?>
-								<div id="logo" class="logo">
-									<?php if ( $logo ) : // logo image ?>
-										<a href="<?php print $front_page; ?>" title="<?php print t( 'Home' ); ?>" rel="home" id="img-logo" class="img-logo">
-											<img src="<?php print $logo; ?>" alt="<?php print t( 'Home' ); ?>">
-										</a>
-									<?php endif;
-						
-									if ( $site_name ) : //site name ?>
-										<h1 title="<?php print $site_name; ?>" id="site-name" class="site-name">
-											<a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>"><?php print $site_name; ?></a>
-										</h1>
-									<?php endif;
-						
-									if ( $site_slogan ) : // site slogan ?>
-										<div title="<?php print $site_slogan; ?>" id="slogan" class="slogan">
-											<?php print $site_slogan; ?>
-										</div>
-									<?php endif; ?>
-								</div><!-- /#name-and-slogan -->
-							<?php endif; ?>
-						</div>
-						
-						<div class="col2">
-							<!-- Region Menu -->
-							<?php if ( $page['menu'] ) :
-								print render( $page['menu'] );
-							endif; ?>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Region Slider -->
-			<?php if ( $page['slider'] ) : 
-				theme1005_region_preffix ( 'slider' );
-					print render( $page['slider'] );
-				theme1005_region_suffix ( 'slider' );
-			endif; ?>
-
-			<!-- Region Header -->
-			<?php if ( $page['header'] ) : 
-				theme1005_region_preffix ( 'header' );
-					print render( $page['header'] );
-				theme1005_region_suffix ( 'header' );
-			endif; ?>
-
-			<!-- Region Header bottom -->
-			<?php if ( $page['header_bottom'] ) : 
-				theme1005_region_preffix ( 'header_bottom' );
-					print render( $page['header_bottom'] );
-				theme1005_region_suffix ( 'header_bottom' );
-			endif; ?>
-		</header>
-
-<?php }else if ($path==="node/2") {?>
-<!-- Footer
-		======================================================================================= -->
-		<footer id="footer" class="footer page-footer" role="contentinfo">
-			<!-- Region Footer top -->
-			<?php if ( $page['footer_top'] ) : 
-				theme1005_region_preffix ( 'footer_top' );
-					print render( $page['footer_top'] );
-				theme1005_region_suffix ( 'footer_top' );
-			endif; ?>
-
-			<div class="footer-wrapper">
-				<div class="container-12">
-					<div class="grid-12 clearfix">
-						<!-- Region Footer -->
-						<?php if ( $page['footer'] ) :
-							print render( $page['footer'] );
-						endif; ?>
-						
-						<?php if ( $is_front ) : ?>
-							More <a rel="nofollow" href="http://www.templatemonster.com/category/dentistry-drupal-themes/" target="_blank">Dentistry Drupal Themes at TemplateMonster.com</a>
-						<?php endif; ?>
-					</div>
-				</div>
-			</div>
-		</footer>
-
-<?php else {?>
 <div id="page-wrapper" class="page-wrapper">
 	<div id="page" class="page">
 		
@@ -385,4 +282,3 @@ if ($path==="node/1")
 		</footer>
 	</div>
 </div>
-<?php } ?>
