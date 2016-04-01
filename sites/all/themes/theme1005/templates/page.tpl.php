@@ -71,7 +71,7 @@
 
 <?php
 $path =current_path();
-if($path==='node/2'):
+if($path==='node/1'):
 ?>
 
 	<!-- Header
@@ -146,7 +146,7 @@ if($path==='node/2'):
 			endif; ?>
 		</header>
 
-<?php elseif ($path==='node/4'): ?>
+<?php elseif ($path==='node/2'): ?>
 <!-- Footer
 		======================================================================================= -->
 		<footer id="footer" class="footer page-footer" role="contentinfo">
