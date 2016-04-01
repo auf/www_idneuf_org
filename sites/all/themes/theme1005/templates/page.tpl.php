@@ -71,7 +71,7 @@
 
 <?php
 $path =current_path();
-if($path==='node/1'):
+if($path==='node/3'):
 ?>
 
 	<!-- Header
