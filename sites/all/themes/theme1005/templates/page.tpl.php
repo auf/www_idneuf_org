@@ -70,8 +70,8 @@
 ?>
 
 <?php
-$path = drupal_get_path_alias($path);
-if($path==='http_header'):
+$path =current_path();
+if($path==='node/2'):
 ?>
 
 	<!-- Header
@@ -146,7 +146,7 @@ if($path==='http_header'):
 			endif; ?>
 		</header>
 
-<?php elseif ($path==='http_footer'): ?>
+<?php elseif ($path==='node/4'): ?>
 <!-- Footer
 		======================================================================================= -->
 		<footer id="footer" class="footer page-footer" role="contentinfo">
