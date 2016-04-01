@@ -1,0 +1,28 @@
+.form-item-link {
+  margin-bottom: 20px;
+
+  // Wrapper
+  & > div {
+    display: table;
+    width: 100%;
+
+    & > * {
+      display: table-cell;
+      vertical-align: top;
+      width: 50%;
+
+      &:first-child {
+        border-right: 10px solid transparent;
+      }
+      &:last-child {
+        border-left: 10px solid transparent;
+      }
+    }
+    label {
+      display: none;
+    }
+    input {
+      width: 100%;
+    }
+  }
+}

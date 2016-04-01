@@ -1,5 +1,5 @@
 <?php 
-$AUF_URL_FOOTER = 'http://auf.eg-vm-preprod2.accelance.net/?q=node/2';
+$AUF_URL_FOOTER = 'http://'.$_SERVER['HTTP_HOST'].'http_footer';
 /* $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $wikipediaURL);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

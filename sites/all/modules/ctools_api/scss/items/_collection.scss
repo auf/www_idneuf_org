@@ -1,0 +1,13 @@
+.fieldset-collection {
+  border: 0 !important;
+  & > .fieldset-wrapper {
+    padding: 0 !important;
+    & > fieldset {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+table + table {
+  margin-top: 20px;
+}

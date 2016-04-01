@@ -1,0 +1,60 @@
+@mixin inline-block($align: top) {
+  display: inline-block;
+  vertical-align: $align;
+}
+
+@mixin placeholder() {
+  ::-webkit-input-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+
+}
+@mixin placeholderFocus() {
+  :focus::-webkit-input-placeholder {
+    @content;
+  }
+  :focus:-moz-placeholder {
+    @content;
+  }
+}
+
+// Create a block of CSS rules with specified vendor prefixes.
+//
+// Result of:
+//   @include vendor-prefixes(box-shadow, 3px 0 6px rgba(0, 0, 0, .5), webkit, moz);
+// will be the next:
+//   -webkit-box-shadow: 3px 0 6px rgba(0, 0, 0, .5);
+//   -moz-box-shadow: 3px 0 6px rgba(0, 0, 0, .5);
+//   box-shadow: 3px 0 6px rgba(0, 0, 0, .5);
+@mixin vendor-prefixes($rule, $value, $prefixes...) {
+  @each $prefix in append($prefixes, '') {
+    @if $prefix != '' {
+      $prefix: '-#{$prefix}-';
+    }
+
+    #{$prefix}#{$rule}: unquote($value);
+  }
+}
+
+// Create a block with same CSS rule and different, prefixed, values.
+//
+// Result of:
+//   @include vendor-values(background, linear-gradient(top, #d2d2d2 0%, #dcdcdc 32%, #f0f0f0 75%, #f9f9f9 100%), webkit, moz, ms, o);
+// will be the next:
+//   background: -webkit-linear-gradient(top, #fafafa 0%, #f0f0f0 31%, #dcdcdc 72%, #d3d3d3 100%);
+//   background: -moz-linear-gradient(top, #fafafa 0%, #f0f0f0 31%, #dcdcdc 72%, #d3d3d3 100%);
+//   background: -ms-linear-gradient(top, #fafafa 0%, #f0f0f0 31%, #dcdcdc 72%, #d3d3d3 100%);
+//   background: -o-linear-gradient(top, #fafafa 0%, #f0f0f0 31%, #dcdcdc 72%, #d3d3d3 100%);
+//   background: linear-gradient(top, #fafafa 0%, #f0f0f0 31%, #dcdcdc 72%, #d3d3d3 100%);
+@mixin vendor-values($property, $value, $prefixes...) {
+  @each $prefix in append($prefixes, '') {
+    @if $prefix != '' {
+      $prefix: '-#{$prefix}-';
+    }
+
+    #{$property}: unquote($prefix + $value);
+  }
+}

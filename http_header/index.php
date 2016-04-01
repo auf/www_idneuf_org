@@ -1,5 +1,8 @@
+<html>
+<head></head>
+<body>
 <?php 
-$AUF_URL_header = 'http://auf.eg-vm-preprod2.accelance.net/?q=node/1';
+$AUF_URL_header = 'http://localhost/www_idneuf_org/?q=http_header';
 /* $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $wikipediaURL);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -9,3 +12,5 @@ curl_close($ch);*/
 $resultat = file_get_contents($AUF_URL_header);
 echo $resultat;
 ?>
+</body>
+</html>

@@ -1,0 +1,257 @@
+@import "mixins", "variables";
+
+.ctools-modal-content {
+  border-radius: $border-radius !important;
+}
+
+.modal-content, .modal-title {
+  font-size: 12px !important;
+  font-weight: normal !important;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.modal-content {
+  width: 100% !important;
+  padding: 1em !important;
+
+  * {
+    @include vendor-prefixes(box-sizing, border-box, webkit, moz);
+  }
+
+  ul, ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a, .pseudo-link {
+    color: #308aca;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  @include placeholder() {
+    color: #838383;
+  }
+  @include placeholderFocus() {
+    color: rgba(0, 0, 0, .3);
+  }
+
+  input, select, button, textarea {
+    outline: none;
+    font-size: $input-font-size;
+  }
+
+  table, thead, tbody, th, tr, td {
+    border: 0 !important;
+  }
+
+  form {
+    // Handle Drupal form structure.
+    & > div {
+      & > .form-item {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  table {
+    margin: 0;
+    border-spacing: 1px;
+    border-collapse: separate;
+    background: $border-color;
+    &.collection {
+      .form-text, .form-select {
+        width: 100%;
+      }
+    }
+  }
+  thead {
+    background: #f1f1f1;
+  }
+  th {
+    background: none;
+  }
+  td {
+    vertical-align: bottom;
+  }
+  input {
+    // Important needed to break styles of "Shiny" theme.
+    height: $elem-height;
+    padding: 0 $input-padding;
+    line-height: $elem-height;
+    border-radius: $border-radius;
+    &:not([type=button]):not([type=submit]) {
+      margin: 0 !important;
+    }
+  }
+  select {
+    // Important needed to break styles of "Shiny" theme.
+    cursor: pointer;
+    padding: 0 20px 0 $input-padding !important;
+    border-radius: $border-radius !important;
+    background: #fff url(../images/down-arrow.png) no-repeat right center !important;
+
+    &:not([multiple]) {
+      height: $elem-height;
+      line-height: $elem-height - 2px;
+    }
+    &[multiple] {
+      padding: $input-padding !important;
+      background: #fff !important;
+      vertical-align: bottom;
+    }
+  }
+  textarea {
+    resize: none;
+    padding: $input-padding;
+    border-radius: $border-radius $border-radius 0 0;
+  }
+  fieldset {
+    border: 1px solid $border-color;
+    &.form-wrapper {
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .fieldset-wrapper {
+    padding: 15px;
+  }
+
+  [type=text], [type=password], [type=email], .pseudo-select, .pseudo-file, select, textarea {
+    @include vendor-prefixes(transition, 'border ease-in-out .2s, box-shadow ease-in-out .2s, background ease-in-out .3s', webkit, moz);
+    @include vendor-prefixes(appearance, none, webkit, moz);
+    @include vendor-prefixes(box-shadow, none, webkit);
+
+    border: 1px solid $border-color !important;
+
+    &:focus, &.focus {
+      border-color: rgba(82, 168, 236, .8) !important;
+      @include vendor-prefixes(box-shadow, 'inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(82, 168, 236, .6)', webkit);
+    }
+
+    &.error {
+      border: 1px solid #f00 !important;
+    }
+  }
+
+  [type=button], [type=submit] {
+    @include inline-block(middle);
+    min-width: 80px;
+    height: $elem-height;
+    line-height: $elem-height;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 10px 0 0;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .75);
+    background: #f5f5f5;
+    @include vendor-values(background, linear-gradient(top, #fff, #e6e6e6), webkit, moz, ms, o);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#e6e6e6));
+    background-repeat: repeat-x;
+    border: 1px solid $border-color;
+    border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+    border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
+    border-bottom-color: #b3b3b3;
+    border-radius: $border-radius;
+    @include vendor-prefixes(box-shadow, 'inset 0 1px 0 rgba(255, 255, 255, .2)', webkit);
+
+    &:focus {
+      color: #fff;
+      background: #659a22;
+      //@include vendor-values(background, linear-gradient(top, #9ac92c, #659a22), webkit, moz, ms, o);
+      //background: -webkit-gradient(linear, 0 0, 0 100%, from(#9ac92c), to(#659a22));
+      text-shadow: 1px 1px #659a22;
+      border-color: #51a351 #51a351 #387038;
+      border-color: rgba(255, 255, 255, .15) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
+    }
+    &:disabled {
+      background: #efefef;
+      border-color: #e0e0e0;
+    }
+    &:not(:disabled):not(.return):not(.cancel):hover {
+      color: #333;
+      background: #e6e6e6 0 -15px;
+    }
+  }
+
+  .form-item {
+    & > label {
+      @include inline-block();
+      margin-bottom: 5px;
+    }
+  }
+  .text-format-wrapper {
+    fieldset {
+      display: none;
+    }
+  }
+  .form-type-textfield {
+    input {
+      width: 100%;
+    }
+  }
+  .option-text-aligner {
+    display: table;
+    width: 100%;
+    & > * {
+      float: none !important;
+      padding: 0 !important;
+      display: table-cell;
+      vertical-align: bottom;
+    }
+    .form-type-textfield {
+      width: 100%;
+      border-right: 20px solid transparent;
+    }
+  }
+  .description {
+    color: #999;
+    font-size: 10px;
+    font-style: italic;
+    margin-top: 5px;
+  }
+  .dependent-options {
+    padding-left: 0 !important;
+  }
+  .button {
+    color: #fff !important;
+    box-shadow: none !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25) !important;
+    border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
+
+    &.return {
+      background: #006dcc;
+      @include vendor-values(background, linear-gradient(to bottom, #0088cc, #0044cc), webkit, moz, ms, o);
+      background: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+      background-repeat: repeat-x;
+      border-color: #0044cc #0044cc #002a80;
+      &:hover {
+        background: #0044cc;
+      }
+    }
+    &.cancel {
+      background: #da4f49;
+      @include vendor-values(background, linear-gradient(to bottom, #ee5f5b, #bd362f), webkit, moz, ms, o);
+      background: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
+      background-repeat: repeat-x;
+      border-color: #bd362f #bd362f #802420;
+      &:hover {
+        background: #bd362f;
+      }
+    }
+  }
+
+  @import "items/horizontal_tabs";
+  @import "items/managed_file";
+  @import "items/text_format";
+  @import "items/collection";
+  @import "items/link_field";
+  @import "items/checkbox";
+  @import "items/image";
+}

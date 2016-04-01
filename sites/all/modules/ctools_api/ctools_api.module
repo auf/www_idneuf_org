@@ -1,0 +1,227 @@
+<?php
+/**
+ * @file
+ * Chaos Tools Suite API.
+ */
+
+define('CTOOLS_API_MODULE_PATH', drupal_get_path('module', 'ctools_api'));
+define('CTOOLS_API_MODULE_TITLE', 'CTools API');
+
+// Include auxiliary functionality.
+require_once 'includes/ctools_api.common.inc';
+// Include API for "styles" plugins provided by Panels.
+require_once 'includes/plugin_types/panels/styles.inc';
+// Include API for "access" plugins provided by CTools.
+require_once 'includes/plugin_types/ctools/access.inc';
+// Include API for "content_types" plugins provided by CTools.
+require_once 'includes/plugin_types/ctools/content_types.inc';
+
+$autoloading_paths = ctools_api_autoloading_paths();
+
+spl_autoload_register(function ($namespace) use ($autoloading_paths) {
+  list($base) = explode('\\', $namespace);
+
+  // @codingStandardsIgnoreStart
+  if (!empty($autoloading_paths[$base])) {
+    $relative = str_replace('\\', '/', $namespace);
+
+    foreach ($autoloading_paths[$base] as $path => $module) {
+      $file = "$path/$relative.inc";
+
+      if (file_exists($file)) {
+        require_once $file;
+        break;
+      }
+    }
+  }
+  // @codingStandardsIgnoreEnd
+});
+
+/**
+ * Implements hook_menu_alter().
+ */
+function ctools_api_menu_alter(array &$items) {
+  // The ctools_access_ajax_add() - is a callback for this route. It expects
+  // two arguments: $fragment and $name. The last one - should be the name of
+  // access plugin. All work fine until we didn't started to operate with
+  // namespaces with a "\" symbol as separator. Drupal split a path by this
+  // symbol and we get wrong plugin name and additional arguments.
+  //
+  // @example
+  // ctools_api:CTools\Plugins\Access\HTTPStatusCode -> ctools_api:CTools
+  //
+  // @see ctools_context_menu()
+  // @see ctools_access_ajax_add()
+  $items['ctools/context/ajax/access/add']['page callback'] = '_ctools_api_access_ajax_add';
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ctools_api_theme(array $existing, $type, $theme, $path) {
+  $modules = [];
+  $hooks = [];
+
+  $hooks['ctools'] = [
+    'render element' => 'elements',
+  ];
+
+  // Collect unique paths of modules to reduce number of directories scanning.
+  foreach (ctools_api_search_plugins() as $plugin) {
+    // Add new path only if it was not added earlier and plugin templatable.
+    if (!isset($modules[$plugin->module_path]) && isset($plugin->implements['CTools\Plugins\TemplatablePluginInterface'])) {
+      $modules[$plugin->module_path] = $plugin->module_path;
+    }
+  }
+
+  foreach ($modules as $module_path) {
+    foreach (file_scan_directory($module_path, '/\.tpl\.php$/') as $path => $file) {
+      // Chop off the remaining extensions if there are any. $template
+      // already has the rightmost extension removed, but there might
+      // still be more, such as with .tpl.php, which still has .tpl in
+      // $template at this point.
+      $dot = strpos($file->filename, '.');
+
+      if (FALSE !== $dot) {
+        $file->filename = substr($file->filename, 0, $dot);
+      }
+
+      $hooks[strtr($file->filename, '-', '_')] = [
+        'path' => dirname($path),
+        'template' => $file->filename,
+      ];
+    }
+  }
+
+  return $hooks;
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function ctools_api_theme_registry_alter(array &$theme_registry) {
+  // Alter the "panels_flexible" theme to remove any markup of layout. This
+  // needed to allow style plugins and pane templates affect on a markup.
+  $hook = 'panels_flexible';
+
+  if (isset($theme_registry[$hook])) {
+    $entry =& $theme_registry[$hook];
+
+    $entry['function'] = "ctools_api_$hook";
+    $entry['includes'][] = CTOOLS_API_MODULE_PATH . '/includes/ctools_api.theme.inc';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function ctools_api_form_alter(array &$form, array &$form_state, $form_id) {
+  $nested_required = FALSE;
+
+  switch ($form_id) {
+    // All type of plugins have very different implementation. This module
+    // tries to fix this. The "access" and "style" plugin types required
+    // their settings to be in a "settings" sub-array of $form_state['conf'].
+    case 'panels_edit_style_settings_form':
+    case 'panels_edit_configure_access_test_form':
+      $nested_required = TRUE;
+      // NO BREAK HERE! Everything should be as is.
+
+    case 'ctools_api_ctools_api_content_type_edit_form':
+      try {
+        $plugin = ctools_api_form_state_get_plugin($form_state);
+
+        // If "object" property does not exist, then this plugin is not
+        // implemented CTools API.
+        if (empty($plugin['object'])) {
+          throw new \Exception();
+        }
+      }
+      // Break future alterations because they are needed only for CTools API
+      // plugins.
+      catch (\Exception $e) {
+        break;
+      }
+
+      // Need to extract our form elements to the top level to be able to use
+      // unified form implementation and AJAX callbacks. Otherwise, #parents
+      // for every element will be wrong.
+      if ($nested_required && isset($form['settings'])) {
+        $form = array_merge($form['settings'], $form);
+        $form_state['#elements'] = element_children($form['settings']);
+        // Here we mark that our form requires values to be on
+        // a $form_state['values']['settings'] level. This value
+        // will be used in a submit callback.
+        //
+        // @see ctools_api_plugin_base_configuration_form_submit()
+        $form_state['#nested_required'] = TRUE;
+        // Remove duplicate form elements.
+        unset($form['settings']);
+      }
+
+      // Be able to update form after changing the context.
+      if (isset($form['context'])) {
+        $form['context'] = array_merge($form['context'], [
+          // Needed to be empty for triggering AJAX callback on changing.
+          '#default_value' => isset($form_state['conf']['context']) ? $form_state['conf']['context'] : 'empty',
+          // @see ctools_api_plugin_base_configuration_form_process()
+          '#ajax' => [
+            // Wrapper is unnecessary because CTools require to response
+            // full modal window using ctools_modal_form_render() function.
+            'callback' => 'ctools_api_plugin_base_configuration_form_ajax',
+          ],
+        ]);
+      }
+
+      // Set button classes.
+      foreach ([
+        // CSS class => [<STYLES>, <ACCESS>, <CONTENT_TYPES>].
+        'return' => [['submit'], ['save'], ['buttons', 'return']],
+        'cancel' => [['cancel_style'], ['remove'], ['buttons', 'cancel']],
+      ] as $class => $elements) {
+        foreach ($elements as $parents) {
+          $button =& drupal_array_get_nested_value($form, $parents);
+
+          if (NULL !== $button) {
+            $button['#attributes']['class'] = ['button', $class];
+          }
+        }
+      }
+
+      // MUST to be added to render default fields, provided by CTools.
+      ctools_form_include($form_state, 'content');
+
+      // This callback need to be first in a queue for execution because
+      // it forms a correct structure of $form_state['values'] array.
+      foreach (['validate', 'submit'] as $type) {
+        array_unshift($form["#$type"], "ctools_api_plugin_base_configuration_form_$type");
+      }
+      break;
+
+    // Panels provide a "Display settings" button that allow to configure
+    // default caching and style settings for every panel. On saving
+    // configuration occurs nothing.
+    case 'panels_flexible_add_item_form':
+      $form['#submit'][] = 'ctools_api_panels_flexible_add_item_form_submit';
+      break;
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ctools_api_ctools_plugin_directory($owner, $plugin_type) {
+  return "api/$owner/$plugin_type";
+}
+
+/**
+ * Menu callback.
+ *
+ * @internal
+ *
+ * @see ctools_api_menu_alter()
+ */
+function _ctools_api_access_ajax_add() {
+  $arguments = func_get_args();
+  ctools_access_ajax_add(array_shift($arguments), implode('\\', $arguments));
+}
