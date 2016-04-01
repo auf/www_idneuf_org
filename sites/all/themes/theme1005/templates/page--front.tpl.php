@@ -122,7 +122,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
  
  
 <div class="content block-content">
-<ul id="superfish-1" class="menu sf-menu sf-main-menu sf-horizontal sf-style-none sf-total-items-5 sf-parent-items-2 sf-single-items-3"><li id="menu-201-1" class="active-trail first odd sf-item-1 sf-depth-1 sf-total-children-3 sf-parent-children-3 sf-single-children-0 menuparent"><a href="/drupal_54829/" title="Front page" class="sf-depth-1 menuparent active">Home</a><ul class="sf-megamenu"><li class="sf-megamenu-wrapper active-trail first odd sf-item-1 sf-depth-1 sf-total-children-3 sf-parent-children-3 sf-single-children-0 menuparent"><ol><li id="menu-5076-1" class="first odd sf-item-1 sf-depth-2 sf-total-children-2 sf-parent-children-0 sf-single-children-2 sf-megamenu-column menuparent"><div class="sf-megamenu-column"><a href="/drupal_54829/?q=archive" title="" class="sf-depth-2 menuparent">Archive</a><ol><li id="menu-5077-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="/drupal_54829/?q=faqs" title="" class="sf-depth-3">FAQs</a></li><li id="menu-5944-1" class="last even sf-item-2 sf-depth-3 sf-no-children"><a href="/drupal_54829/?q=testimonials" title="" class="sf-depth-3">Testimonials</a></li></ol></div></li><li id="menu-5612-1" class="middle even sf-item-2 sf-depth-2 sf-total-children-2 sf-parent-children-0 sf-single-children-2 sf-megamenu-column menuparent"><div class="sf-megamenu-column"><a href="http://drupal.org" title="" class="sf-depth-2 menuparent">Cras suscipit</a><ol><li id="menu-5945-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="http://drupal.org" title="" class="sf-depth-3">Lorem ipsum</a></li><li id="menu-5614-1" class="last even sf-item-2 sf-depth-3 sf-no-children"><a href="http://drupal.org" title="" class="sf-depth-3">Vestibulum</a></li></ol></div></li><li id="menu-5615-1" class="last odd sf-item-3 sf-depth-2 sf-total-children-2 sf-parent-children-0 sf-single-children-2 sf-megamenu-column menuparent"><div class="sf-megamenu-column"><a href="http://drupal.org" title="" class="sf-depth-2 menuparent">Cras euismod</a><ol><li id="menu-5616-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="http://drupal.org" title="" class="sf-depth-3">Vivamus sit</a></li><li id="menu-5940-1" class="last even sf-item-2 sf-depth-3 sf-no-children"><a href="http://drupal.org" title="" class="sf-depth-3">Dolore sit</a></li></ol></div></li></ol></li></ul></li><li id="menu-5074-1" class="middle even sf-item-2 sf-depth-1 sf-no-children"><a href="/drupal_54829/?q=about" class="sf-depth-1">About</a></li><li id="menu-739-1" class="middle odd sf-item-3 sf-depth-1 sf-total-children-3 sf-parent-children-1 sf-single-children-2 menuparent"><a href="/drupal_54829/?q=portfolio" title="" class="sf-depth-1 menuparent">Services </a><ul><li id="menu-3768-1" class="first odd sf-item-1 sf-depth-2 sf-no-children"><a href="/drupal_54829/?q=portfolio-2" title="" class="sf-depth-2">Services 2</a></li><li id="menu-3769-1" class="middle even sf-item-2 sf-depth-2 sf-total-children-3 sf-parent-children-0 sf-single-children-3 menuparent"><a href="/drupal_54829/?q=portfolio-3" title="" class="sf-depth-2 menuparent">Services 3</a><ul><li id="menu-5079-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="/drupal_54829/?q=taxonomy/term/31" title="" class="sf-depth-3">Category 1</a></li><li id="menu-5080-1" class="middle even sf-item-2 sf-depth-3 sf-no-children"><a href="/drupal_54829/?q=taxonomy/term/30" title="" class="sf-depth-3">Category 2</a></li><li id="menu-5081-1" class="last odd sf-item-3 sf-depth-3 sf-no-children"><a href="/drupal_54829/?q=taxonomy/term/29" title="" class="sf-depth-3">Category 3</a></li></ul></li><li id="menu-3767-1" class="last odd sf-item-3 sf-depth-2 sf-no-children"><a href="/drupal_54829/?q=portfolio-4" title="" class="sf-depth-2">Services 4</a></li></ul></li><li id="menu-668-1" class="middle even sf-item-4 sf-depth-1 sf-no-children"><a href="/drupal_54829/?q=blog" title="" class="sf-depth-1">News</a></li><li id="menu-4931-1" class="last odd sf-item-5 sf-depth-1 sf-no-children"><a href="/drupal_54829/?q=contacts" class="sf-depth-1">Contacts</a></li></ul> </div>
+<ul id="superfish-1" class="menu sf-menu sf-main-menu sf-horizontal sf-style-none sf-total-items-5 sf-parent-items-2 sf-single-items-3"><li id="menu-201-1" class="active-trail first odd sf-item-1 sf-depth-1 sf-total-children-3 sf-parent-children-3 sf-single-children-0 menuparent"><a href="#" title="Front page" class="sf-depth-1 menuparent active">Home</a><ul class="sf-megamenu"><li class="sf-megamenu-wrapper active-trail first odd sf-item-1 sf-depth-1 sf-total-children-3 sf-parent-children-3 sf-single-children-0 menuparent"><ol><li id="menu-5076-1" class="first odd sf-item-1 sf-depth-2 sf-total-children-2 sf-parent-children-0 sf-single-children-2 sf-megamenu-column menuparent"><div class="sf-megamenu-column"><a href="#" title="" class="sf-depth-2 menuparent">Archive</a><ol><li id="menu-5077-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">FAQs</a></li><li id="menu-5944-1" class="last even sf-item-2 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Testimonials</a></li></ol></div></li><li id="menu-5612-1" class="middle even sf-item-2 sf-depth-2 sf-total-children-2 sf-parent-children-0 sf-single-children-2 sf-megamenu-column menuparent"><div class="sf-megamenu-column"><a href="#" title="" class="sf-depth-2 menuparent">Cras suscipit</a><ol><li id="menu-5945-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Lorem ipsum</a></li><li id="menu-5614-1" class="last even sf-item-2 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Vestibulum</a></li></ol></div></li><li id="menu-5615-1" class="last odd sf-item-3 sf-depth-2 sf-total-children-2 sf-parent-children-0 sf-single-children-2 sf-megamenu-column menuparent"><div class="sf-megamenu-column"><a href="#" title="" class="sf-depth-2 menuparent">Cras euismod</a><ol><li id="menu-5616-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Vivamus sit</a></li><li id="menu-5940-1" class="last even sf-item-2 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Dolore sit</a></li></ol></div></li></ol></li></ul></li><li id="menu-5074-1" class="middle even sf-item-2 sf-depth-1 sf-no-children"><a href="#" class="sf-depth-1">About</a></li><li id="menu-739-1" class="middle odd sf-item-3 sf-depth-1 sf-total-children-3 sf-parent-children-1 sf-single-children-2 menuparent"><a href="#" title="" class="sf-depth-1 menuparent">Services </a><ul><li id="menu-3768-1" class="first odd sf-item-1 sf-depth-2 sf-no-children"><a href="#" title="" class="sf-depth-2">Services 2</a></li><li id="menu-3769-1" class="middle even sf-item-2 sf-depth-2 sf-total-children-3 sf-parent-children-0 sf-single-children-3 menuparent"><a href="#" title="" class="sf-depth-2 menuparent">Services 3</a><ul><li id="menu-5079-1" class="first odd sf-item-1 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Category 1</a></li><li id="menu-5080-1" class="middle even sf-item-2 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Category 2</a></li><li id="menu-5081-1" class="last odd sf-item-3 sf-depth-3 sf-no-children"><a href="#" title="" class="sf-depth-3">Category 3</a></li></ul></li><li id="menu-3767-1" class="last odd sf-item-3 sf-depth-2 sf-no-children"><a href="#" title="" class="sf-depth-2">Services 4</a></li></ul></li><li id="menu-668-1" class="middle even sf-item-4 sf-depth-1 sf-no-children"><a href="#" title="" class="sf-depth-1">News</a></li><li id="menu-4931-1" class="last odd sf-item-5 sf-depth-1 sf-no-children"><a href="#" class="sf-depth-1">Contacts</a></li></ul> </div>
 </div> </div>
 </div>
 </div>
@@ -144,7 +144,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="inner">
 <div class="slogan"><p>Providing comprehensive <span>dental services</span></p>
 </div>
-<div class="btn"><a href="/drupal_54829/?q=node/50">Read more</a></div>
+<div class="btn"><a href="#">Read more</a></div>
 </div>
 </div>
 </div></div></li>
@@ -154,7 +154,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="inner">
 <div class="slogan"><p>Achieve your desired <span>perfect smile!</span></p>
 </div>
-<div class="btn"><a href="/drupal_54829/?q=node/47">Read more</a></div>
+<div class="btn"><a href="#">Read more</a></div>
 </div>
 </div>
 </div></div></li>
@@ -164,7 +164,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="inner">
 <div class="slogan"><p>Providing proper treatment <span>for each individual</span></p>
 </div>
-<div class="btn"><a href="/drupal_54829/?q=node/51">Read more</a></div>
+<div class="btn"><a href="#">Read more</a></div>
 </div>
 </div>
 </div></div></li>
@@ -184,19 +184,19 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="view-content">
 <div class="grid-3 views-row align-center first alpha odd">
 <div class="views-field views-field-field-article-icon-img"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/icon1.png" width="62" height="66"/></div> </div>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/124">Package services</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Package services</a></span> </h3>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare.</span> </div> </div>
 <div class="grid-3 views-row align-center even">
 <div class="views-field views-field-field-article-icon-img"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/icon2.png" width="62" height="66"/></div> </div>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/123">Oral surgery</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Oral surgery</a></span> </h3>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare.</span> </div> </div>
 <div class="grid-3 views-row align-center odd">
 <div class="views-field views-field-field-article-icon-img"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/icon3.png" width="62" height="66"/></div> </div>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/122">Implantology</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Implantology</a></span> </h3>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare.</span> </div> </div>
 <div class="grid-3 views-row align-center last omega even">
 <div class="views-field views-field-field-article-icon-img"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/icon4.png" width="62" height="66"/></div> </div>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/121">Cosmetic dentistry</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Cosmetic dentistry</a></span> </h3>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare.</span> </div> </div>
 </div>
 </div> </div>
@@ -211,7 +211,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
  
 <div class="content block-content">
 <div class="clearfix">
-<div class="grid-6 alpha"><figure class="img-indent"><img src="/drupal_54829/sites/all/themes/theme1005/images/page1_img1.jpg" alt=""/></figure></div>
+<div class="grid-6 alpha"><figure class="img-indent"><img src="http://static.livedemo00.template-help.com/drupal_54829/sites/all/themes/theme1005/images/page1_img1.jpg" alt=""/></figure></div>
 <div class="grid-3">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</div>
 <div class="grid-3 omega">Dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</div>
 </div> </div>
@@ -230,28 +230,28 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="view view-services view-id-services view-display-id-block mobile-two-column view-dom-id-bff3491e8cfb51d724af43b439d8c066">
 <div class="view-content">
 <div class="grid-3 views-row first alpha clear-left odd">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/132"><i class="fa fa-angle-right"></i>Incididunt ut labore et dol</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>Incididunt ut labore et dol</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 <div class="grid-3 views-row even">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/131"><i class="fa fa-angle-right"></i>veniam quis nostrud</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>veniam quis nostrud</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 <div class="grid-3 views-row odd">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/130"><i class="fa fa-angle-right"></i>laboris nisi</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>laboris nisi</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 <div class="grid-3 views-row last omega even">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/129"><i class="fa fa-angle-right"></i>voluptate velit</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>voluptate velit</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 <div class="grid-3 views-row first alpha clear-left odd">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/128"><i class="fa fa-angle-right"></i>IUt enim ad minim</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>IUt enim ad minim</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 <div class="grid-3 views-row even">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/127"><i class="fa fa-angle-right"></i>exercitation ullamco</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>exercitation ullamco</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 <div class="grid-3 views-row odd">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/126"><i class="fa fa-angle-right"></i>reprehenderit in</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>reprehenderit in</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 <div class="grid-3 views-row last omega even">
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/125"><i class="fa fa-angle-right"></i>esse cillum dolore eu</a></span> </h5>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"><i class="fa fa-angle-right"></i>esse cillum dolore eu</a></span> </h5>
 <div class="views-field views-field-body"> <span class="field-content">Aenean quis mattis magna. In pulvinar interdum mauris in ornare. Fusce molestie erat id sapien aliquam</span> </div> </div>
 </div>
 </div> </div>
@@ -269,34 +269,34 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="views-row views-row-1 views-row-odd views-row-first">
 <div class="views-field views-field-field-employee-photo"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/styles/171x171/public/emp-1.jpg?itok=0rP3FBxw" width="171" height="171"/></div> </div>
 <h5 class="views-field views-field-field-employee-position"> <div class="field-content">DR</div> </h5>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/69">Tom Cooper</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Tom Cooper</a></span> </h3>
 <div class="views-field views-field-body"> <div class="field-content">Vivamus vel eros eget magna volutpat sagittis. Nulla faucibus nibh a magna</div> </div>
-<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon – Fri: 10am – 8pm</li>
-<li class="last">Sat – Sun: By Special Appointment</li>
+<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon â€“ Fri: 10am â€“ 8pm</li>
+<li class="last">Sat â€“ Sun: By Special Appointment</li>
 </ul></div></div> </div> </div>
 <div class="views-row views-row-2 views-row-even">
 <div class="views-field views-field-field-employee-photo"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/styles/171x171/public/emp-2.jpg?itok=LrJ3r-5X" width="171" height="171"/></div> </div>
 <h5 class="views-field views-field-field-employee-position"> <div class="field-content">DR</div> </h5>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/65">Amir CARTER</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Amir CARTER</a></span> </h3>
 <div class="views-field views-field-body"> <div class="field-content">Vivamus vel eros eget magna volutpat sagittis. Nulla faucibus nibh a magna</div> </div>
-<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon – Fri: 10am – 8pm</li>
-<li class="last">Sat – Sun: By Special Appointment</li>
+<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon â€“ Fri: 10am â€“ 8pm</li>
+<li class="last">Sat â€“ Sun: By Special Appointment</li>
 </ul></div></div> </div> </div>
 <div class="views-row views-row-3 views-row-odd">
 <div class="views-field views-field-field-employee-photo"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/styles/171x171/public/emp-3.jpg?itok=MqQ3TtKc" width="171" height="171"/></div> </div>
 <h5 class="views-field views-field-field-employee-position"> <div class="field-content">DR</div> </h5>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/73">Amanda CARTER</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Amanda CARTER</a></span> </h3>
 <div class="views-field views-field-body"> <div class="field-content">Vivamus vel eros eget magna volutpat sagittis. Nulla faucibus nibh a magna</div> </div>
-<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon – Fri: 10am – 8pm</li>
-<li class="last">Sat – Sun: By Special Appointment</li>
+<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon â€“ Fri: 10am â€“ 8pm</li>
+<li class="last">Sat â€“ Sun: By Special Appointment</li>
 </ul></div></div> </div> </div>
 <div class="views-row views-row-4 views-row-even views-row-last">
 <div class="views-field views-field-field-employee-photo"> <div class="field-content"><img src="http://livedemo00.template-help.com/drupal_54829/sites/default/files/styles/171x171/public/emp-4.jpg?itok=N-sy7Ywb" width="171" height="171"/></div> </div>
 <h5 class="views-field views-field-field-employee-position"> <div class="field-content">DR</div> </h5>
-<h3 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/71">Kay NELSON</a></span> </h3>
+<h3 class="views-field views-field-title"> <span class="field-content"><a href="#">Kay NELSON</a></span> </h3>
 <div class="views-field views-field-body"> <div class="field-content">Vivamus vel eros eget magna volutpat sagittis. Nulla faucibus nibh a magna</div> </div>
-<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon – Fri: 10am – 8pm</li>
-<li class="last">Sat – Sun: By Special Appointment</li>
+<div class="views-field views-field-field-office-hours"> <div class="views-label views-label-field-office-hours">Office Hours: </div> <div class="field-content"><div class="item-list"><ul><li class="first">Mon â€“ Fri: 10am â€“ 8pm</li>
+<li class="last">Sat â€“ Sun: By Special Appointment</li>
 </ul></div></div> </div> </div>
 </div>
 </div> </div>
@@ -325,13 +325,13 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div id="flexslider-2" class="flexslider">
 <ul class="slides"><li>
 <div class="views-field views-field-body"> <span class="field-content">Cras elementum sed mi sit amet ullamcorper. Cras sed felis a enim rutrum lobortis a eu nisi. Curabitur justo libero, hendrerit at consequat ut, sagittis convallis lorem. Morbi interdum mattis justo, sed commodo nibh ultricies nec. Duis ornare lacus quam, sit amet dapibus augue sodales non. Maecenas</span> </div>
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/86"> Incididunt ut l</a></span> </h5></li>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"> Incididunt ut l</a></span> </h5></li>
 <li>
 <div class="views-field views-field-body"> <span class="field-content">Cras sit amet metus id odio sollicitudin eleifend non id lectus. Vivamus commodo est magna, ut hendrerit elit hendrerit in. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed pulvinar quam varius sapien commodo vehicula. Integer quis viverra diam.</span> </div>
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/85"> Incididunt ut l</a></span> </h5></li>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"> Incididunt ut l</a></span> </h5></li>
 <li>
 <div class="views-field views-field-body"> <span class="field-content">Etiam eget accumsan neque, et sollicitudin lacus. Ut nunc nibh, molestie vel varius in, placerat vel velit. Etiam non euismod ante. Nulla id fermentum augue, eu elementum risus. Donec sit amet turpis tempus, vehicula mi hendrerit, dictum felis. Cras tincidunt est ac commodo feugiat. Sed nec urna</span> </div>
-<h5 class="views-field views-field-title"> <span class="field-content"><a href="/drupal_54829/?q=node/84"> Incididunt ut l</a></span> </h5></li>
+<h5 class="views-field views-field-title"> <span class="field-content"><a href="#"> Incididunt ut l</a></span> </h5></li>
 </ul></div>
 </div>
 </div> </div>
@@ -354,7 +354,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <p>One of our representatives will happily contact you within 24 hours. For urgent needs call us at</p>
 <p class="tel"><i class="fa fa-phone"></i>(800) 2345-6789</p>
 <p class="text-1"><i class="fa fa-map-marker"></i>4578 Marmora Road,Glasgow D04 89GR</p>
-<p class="text-1"><i class="fa fa-envelope-o"></i><a href="/cdn-cgi/l/email-protection#462f2820290622232b292a2f282d68293421"><span class="__cf_email__" data-cfemail="b3daddd5dcf3d7d6dedcdfdaddd89ddcc1d4">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></a></p>
+<p class="text-1"><i class="fa fa-envelope-o"></i><a href="#"><span class="__cf_email__" data-cfemail="b3daddd5dcf3d7d6dedcdfdaddd89ddcc1d4">[email&#160;protected]</span><script data-cfhash='f9e31' type="text/javascript">/* <![CDATA[ */!function(t,e,r,n,c,a,p){try{t=document.currentScript||function(){for(t=document.getElementsByTagName('script'),e=t.length;e--;)if(t[e].getAttribute('data-cfhash'))return t[e]}();if(t&&(c=t.previousSibling)){p=t.parentNode;if(a=c.getAttribute('data-cfemail')){for(e='',r='0x'+a.substr(0,2)|0,n=2;a.length-n;n+=2)e+='%'+('0'+('0x'+a.substr(n,2)^r).toString(16)).slice(-2);p.replaceChild(document.createTextNode(decodeURIComponent(e)),c)}p.removeChild(t)}}catch(u){}}()/* ]]> */</script></a></p>
 </div>
 </div>
 <div id="block-tm-follow-site" class="block-tm-follow-site block block-tm-follow wow fadeInUp block-even">
@@ -375,7 +375,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
  
  
 <div class="content block-content">
-<div><span class="sitename">Dentic</span> &copy; 2016. <a href="?q=privacy-policy">Privacy Policy</a></div>
+<div><span class="sitename">Dentic</span> &copy; 2016. <a href="#">Privacy Policy</a></div>
 <div class="switcher">Desktop Version Only</div> </div>
 </div> </div>
  
