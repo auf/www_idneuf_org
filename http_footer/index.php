@@ -22,7 +22,7 @@ function get_tag1($file,$tag="footer"){
 ?>
 <?php
 // recuperer le contenu de cette page
-$data=geturl("http://localhost/www_idneuf_org/?q=http_footer");
+$data=geturl("http://".$_SERVER['SERVER_NAME']."/?q=http_footer");
 // récupère le contenu du tag, tag compris
 $extrait=get_tag1($data,"footer");
 // ce qui revient est un tableau, on liste tous les résultats avec foreach
