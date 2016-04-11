@@ -1,0 +1,89 @@
+<?php
+/**
+ * @file
+ * This module intends to deal with the EU Directive on Privacy and Electronic
+ * Communications that comes into effect in the UK on 26th May 2012.
+ *
+ * Author: Marcin Pajdzik
+ */
+
+/**
+ * Implements hook_page_build(&$page).
+ */
+function tm_cookie_notice_page_build( &$page ) {
+	$popup_settings = tm_cookie_notice_get_settings();
+	// Check Add/Remove domains
+
+	if ( user_access( 'display TM Cookie notice popup' ) ) {
+		// Array storage for caching full client data.
+		$data = array();
+		if ( $cache = cache_get( 'tm_cookie_notice_client_settings', 'cache' ) ) {
+			$data = $cache->data;
+		} else {
+			// Initialize some needed popup settings messages.
+			$popup_text_info = str_replace( array( "\r", "\n" ), '', $popup_settings['popup_info']['value'] );
+			$html_info = theme( 'tm_cookie_notice_popup_info', array(
+					'message' => check_markup( $popup_text_info, $popup_settings['popup_info']['format'], FALSE )
+			) );
+			$popup_text_info = str_replace( array( "\r", "\n" ), '', $popup_settings['popup_info']['value'] );
+			$data['variables'] = array(
+					'popup_html_info' => empty( $html_info ) ? FALSE : $html_info,
+					'popup_html_agreed' => empty( $html_agreed ) ? FALSE : $html_agreed,
+			);
+			cache_set( 'tm_cookie_notice_client_settings', $data, 'cache', CACHE_TEMPORARY );
+		}
+		drupal_add_js( array( 'tm_cookie_notice' => $data['variables'] ), array( 'type' => 'setting', 'scope' => 'footer' ) );
+		drupal_add_css( drupal_get_path( 'module', 'tm_cookie_notice' ) . '/css/tm_cookie_notice.css' );
+		drupal_add_js( drupal_get_path( 'module', 'tm_cookie_notice' ) . '/js/tm_cookie_notice.js', array( 'type' => 'file', 'scope' => 'footer' ) );
+	}
+}
+
+/**
+ * Implements hook_permission().
+ */
+function tm_cookie_notice_permission() {
+	return array(
+		'administer TM Cookie notice popup' => array(
+			'title' => 'Administer TM Cookie notice popup'
+		),
+		'display TM Cookie notice popup' => array(
+			'title' => 'Display TM Cookie notice popup'
+		),
+	);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function tm_cookie_notice_theme() {
+	$path = drupal_get_path( 'module', 'tm_cookie_notice' ) . '/theme';
+	return array(
+		'tm_cookie_notice_popup_info' => array(
+			'template' => 'tm-cookie-notice-popup-info',
+			'variables' => array( 'message' => NULL, 'agree_button' => NULL, 'disagree_button' => NULL ),
+			'path' => $path,
+		)
+	);
+}
+
+/**
+ *
+ * Retrieves settings from the database for a current language.
+ *
+ * @param type $setting
+ * @return type
+ */
+
+function tm_cookie_notice_get_settings( $setting = 'all' ) {
+	$popup_settings = variable_get( 'tm_cookie_notice', array() );
+
+	if ( $setting == 'all' ) {
+		return $popup_settings;
+	}
+
+	if ( isset( $popup_settings[ $setting ] ) ) {
+		return $popup_settings[ $setting ];
+	} else {
+		return NULL;
+	}
+}

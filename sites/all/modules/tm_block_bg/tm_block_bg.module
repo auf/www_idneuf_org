@@ -1,0 +1,170 @@
+<?php
+
+/*
+ * Implement hook_form_alter()
+ */
+
+function tm_block_bg_form_alter( &$form, &$form_state, $form_id ) {
+	if ( $form_id == 'block_admin_configure' || $form_id == 'block_add_block_form' ) {
+		$form['tm_block_bg_settings'] = array(
+			'#type' => 'fieldset',
+			'#title' => 'TM Block background settings',
+			'#weight' => 1,
+			'#collapsible' => TRUE,
+			'#collapsed' => TRUE,
+		);
+		
+		$form['tm_block_bg_settings']['tm_block_bg_type'] = array(
+			'#type' => 'select',
+			'#title' => t( 'Background type:' ),
+			'#options' => array(
+				'none' => 'None',
+				'image' => 'Image',
+				'video' => 'Video',
+			),
+			'#default_value' => _tm_block_bg_variable_get( $form['module']['#value'], $form['delta']['#value'], 'tm_block_bg_type' ),
+		);
+		
+		$form['tm_block_bg_settings']['tm_block_bg_img_container'] = array(
+			'#type'				=> 'container',
+			'#states'			=> array(
+				'visible'		=> array(
+					'select[name="tm_block_bg_type"]' => array(
+						'value'	=> 'image'
+					),
+				),
+			),
+		);
+		
+		$form['tm_block_bg_settings']['tm_block_bg_img_container']['tm_block_bg_image'] = array(
+			'#tree' => TRUE,
+			'#title' => t( 'Background image' ),
+			'#type' => 'media',
+			'#description' => t( 'Choose block background image.' ),
+			'#default_value' => _tm_block_bg_variable_get( $form['module']['#value'], $form['delta']['#value'], 'tm_block_bg_image' ),
+			'#media_options' => array(
+				'global' => array(
+					'types' => array(
+						'image' => 'image',
+					),
+					'schemes' => array(
+						'public' => 'public',
+					),
+					'file_extensions' => 'png gif jpg jpeg',
+					'max_filesize' => '1 MB',
+					'uri_scheme' => 'public',
+				),
+			),
+		);
+		$form['tm_block_bg_settings']['tm_block_bg_img_container']['tm_block_bg_parallax'] = array(
+			'#type' => 'checkbox',
+			'#title' => t( 'Use parallax' ),
+			'#default_value' => _tm_block_bg_variable_get( $form['module']['#value'], $form['delta']['#value'], 'tm_block_bg_parallax' ),
+		);
+		
+		$form['tm_block_bg_settings']['tm_block_bg_video_container'] = array(
+			'#type'				=> 'container',
+			'#states'			=> array(
+				'visible'		=> array(
+					'select[name="tm_block_bg_type"]' => array(
+						'value'	=> 'video'
+					),
+				),
+			),
+		);
+		
+		$form['tm_block_bg_settings']['tm_block_bg_video_container']['tm_block_bg_video'] = array(
+			'#type' => 'textfield',
+			'#title' => t( 'Background Video URL' ),
+			'#description' => t( 'Enter video URL. Supports youtube video' ),
+			'#default_value' => _tm_block_bg_variable_get( $form['module']['#value'], $form['delta']['#value'], 'tm_block_bg_video' ),
+		);
+		$form['tm_block_bg_settings']['tm_block_bg_video_container']['tm_block_bg_video_start'] = array(
+			'#type' => 'textfield',
+			'#title' => t( 'Start video at' ),
+			'#field_suffix' => t( 'second' ),
+			'#description' => t( 'Enter time in seconds' ),
+			'#default_value' => _tm_block_bg_variable_get( $form['module']['#value'], $form['delta']['#value'], 'tm_block_bg_video_start' ),
+		);
+
+		$form['#submit'][] = 'tm_block_bg_form_submit';
+	}
+}
+
+function tm_block_bg_form_submit( $form, $form_state ) {
+	$values = $form_state['values'];
+	if ( $values['tm_block_bg_type'] ) {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_type', $values['tm_block_bg_type'] );
+	} else {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_type', NULL );
+	}
+	if ( $values['tm_block_bg_image'] ) {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_image', $values['tm_block_bg_image'] );
+	} else {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_image', NULL );
+	}
+	if ( $values['tm_block_bg_parallax'] ) {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_parallax', $values['tm_block_bg_parallax'] );
+	} else {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_parallax', NULL );
+	}
+	if ( $values['tm_block_bg_video'] ) {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_video', $values['tm_block_bg_video'] );
+	} else {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_video', NULL );
+	}
+	if ( $values['tm_block_bg_video_start'] ) {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_video_start', $values['tm_block_bg_video_start'] );
+	} else {
+		_tm_block_bg_variable_set( $values['module'], $values['delta'], 'tm_block_bg_video_start', NULL );
+	}
+}
+
+function tm_block_bg_preprocess_block( &$vars ) {
+	$vars['content_attributes_array']['class'][] = 'content';
+	$block = $vars['elements']['#block'];
+	$module = $block->module;
+	$delta = $block->delta;
+	
+	$block_bg_type = _tm_block_bg_variable_get( $module, $delta, 'tm_block_bg_type' );
+	$block_bg_img = _tm_block_bg_variable_get( $module, $delta, 'tm_block_bg_image' );
+	$block_bg_parallax = _tm_block_bg_variable_get( $module, $delta, 'tm_block_bg_parallax' );
+	$bg_video = _tm_block_bg_variable_get( $module, $delta, 'tm_block_bg_video' );
+	$bg_video_start = _tm_block_bg_variable_get( $module, $delta, 'tm_block_bg_video_start' );
+
+	drupal_add_js( drupal_get_path( 'module', 'tm_block_bg' ) . '/js/jquery.stellar.min.js' );
+	drupal_add_js( drupal_get_path( 'module', 'tm_block_bg' ) . '/js/tm_block_bg_parallax.js' );
+	drupal_add_js( drupal_get_path( 'module', 'tm_block_bg' ) . '/js/jquery.mb.YTPlayer.js' );
+	drupal_add_js( drupal_get_path( 'module', 'tm_block_bg' ) . '/js/tm_block_bg_video.js' );
+
+	if ( isset( $block_bg_img['fid'] ) && $block_bg_img['fid'] && ( $block_bg_type == 'image' ) ) {
+		$file = file_load( $block_bg_img['fid'] );
+		$url = file_create_url( $file->uri );
+		$styles[] = "background-image: url({$url}); background-position: center top;";
+
+		if ( $block_bg_parallax ) {
+			$vars['classes_array'][] = 'tm-parallax';
+			$vars['attributes_array']['data-stellar-background-ratio'] = '0.5';
+		}
+	}
+
+	if ( isset( $bg_video ) && $bg_video && ( $block_bg_type == 'video' ) ) {
+		if ( $bg_video_start == null ) {
+			$bg_video_start = 0;
+		}
+		$bg_video_start = (int) $bg_video_start;
+		$vars['content'] = '<a class="tm_video_bg" data-property="{videoURL:\'' . $bg_video . '\', containment:\'#' . $vars['block_html_id'] . '\',autoPlay:true, showControls:false, mute:true, startAt:' . $bg_video_start . ', opacity:1}">youtube</a>' . $vars['content'];
+	}
+	
+	if ( !empty( $styles ) ) {
+		$vars['attributes_array']['style'] = implode( ";", $styles );
+	}
+}
+
+function _tm_block_bg_variable_set( $module, $delta, $name, $value ) {
+	variable_set( $module . $delta . $name, $value );
+}
+
+function _tm_block_bg_variable_get( $module, $delta, $name ) {
+	return variable_get( $module . $delta . $name, NULL );
+}

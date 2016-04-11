@@ -1,0 +1,14 @@
+name = TM Lazyload
+description = "Automatically lazyload images on windows scroll, makes sites with multiple images load faster."
+core = "7.x"
+package = TM Framework
+version = "7.x-1.0"
+dependencies[] = image
+
+files[] = tm_lazyload.install
+files[] = tm_lazyload.admin.inc
+
+scripts[] = js/jquery.lazyloader.js
+stylesheets[all][] = css/tm_lazyload.css
+
+configure = admin/config/tm_lazyload

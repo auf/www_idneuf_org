@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @file
+ * Installation file.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function tm_cookie_notice_install() {
+	$popup_settings = array(
+		'popup_info' => array(
+			'value' => 'We use Cookies - By using this site or closing this you agree to our Cookies policy.',
+			'format' => filter_default_format(),
+		),
+	);
+	variable_set( 'tm_cookie_notice', $popup_settings );
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function tm_cookie_notice_uninstall() {
+	variable_del( 'tm_cookie_notice' );
+	cache_clear_all( 'variables', 'cache' );
+}

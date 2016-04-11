@@ -1,0 +1,5 @@
+name = TM Block Background
+description = "Provides block background settings."
+core = 7.x
+package = TM Framework
+version = "7.x-1.0"

@@ -1,0 +1,13 @@
+name = TM Shortcodes
+description = "Provides basic shortcode tags like columns, toggle, tabs, highlight, dropcap, etc."
+core = 7.x
+package = TM Framework
+version = "7.x-1.0"
+dependencies[] = filter
+dependencies[] = shortcode
+
+stylesheets[all][]		= css/shortcodes.css
+
+scripts[]				= js/jquery.easypiechart.js
+scripts[]				= js/jquery.appear.js
+scripts[]				= js/shortcodes.js

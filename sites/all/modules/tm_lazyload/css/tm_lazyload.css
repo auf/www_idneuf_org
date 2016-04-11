@@ -1,0 +1,39 @@
+/**
+ * @file
+ * TM Lazyload default CSS
+ */
+
+/* Lazyloader Render */ 
+.lazyloader-icon {
+	position: absolute;
+	z-index: 200;
+}
+
+/* Lazyloader Admin UI */
+#edit-tm-lazyload .lazy-column {
+	width: 49%;
+}
+#edit-tm-lazyload .lazy-column-1 {
+	float: left;
+}
+#edit-tm-lazyload .lazy-column-2 {
+	float: right;
+}
+#edit-tm-lazyload-loader-icon {
+	width: 100%;
+}
+#edit-tm-lazyload-loader-icon .form-item {
+	float: left;
+	height: 32px;
+	padding-left: 20px;
+	position: relative; 
+	width: 50px;
+}
+#edit-tm-lazyload-loader-icon .form-item input {
+	left: 0;
+	position: absolute;
+	top: 5px;
+}
+#edit-tm-lazyload .description {
+	clear: both;
+}

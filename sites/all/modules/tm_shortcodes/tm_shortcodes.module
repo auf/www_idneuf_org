@@ -1,0 +1,314 @@
+<?php
+
+/**
+* Implementation of hook_shortcode_info().
+* Using same formatting as hook_filter_info()
+*/
+
+function tm_shortcodes_init() {
+	$inline_script = '<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>';
+	$element = array(
+		'#type' => 'markup',
+		'#markup' => $inline_script,
+	);
+	drupal_add_html_head($element, 'google-maps');
+}
+
+function tm_shortcodes_shortcode_info() {
+	$shortcodes = array();
+
+	$shortcodes['col'] = array(
+		'title' => t( 'Columns' ),
+		'description' => t( 'Simple columns in content' ),
+		'process callback' => 'tm_shortcodes_columns',
+		'tips callback' => 'tm_shortcodes_columns_tips',
+	);
+	
+	$shortcodes['counter'] = array(
+		'title' => t('Counter'),
+		'description' => t('Creates JS numeric counter'),
+		'process callback' => 'tm_shortcodes_counter',
+		'tips callback' => 'tm_shortcodes_counter_tips',
+	);
+	
+	$shortcodes['icon'] = array(
+		'title' => t('Icon'),
+		'description' => t('Creates Font Awesome Icon shortcode'),
+		'process callback' => 'tm_shortcodes_icon',
+		'tips callback' => 'tm_shortcodes_icon_tips',
+	);
+	
+	$shortcodes['gmap'] = array(
+		'title' => t('Google map'),
+		'description' => t('Creates Google map'),
+		'process callback' => 'tm_shortcodes_gmap',
+		'tips callback' => 'tm_shortcodes_gmap_tips',
+	);
+	
+	$shortcodes['piegraph'] = array(
+		'title' => t('Pie Graph'),
+		'description' => t('Draws percer circle use HTML5 canvas'),
+		'process callback' => 'tm_shortcodes_piegraph',
+		'tips callback' => 'tm_shortcodes_piegraph_tips',
+	);
+	
+	$shortcodes['progressbar'] = array(
+		'title' => t('Progressbar'),
+		'description' => t('Creates progressbar shortcode'),
+		'process callback' => 'tm_shortcodes_progressbar',
+		'tips callback' => 'tm_shortcodes_progressbar_tips',
+	);
+
+	return $shortcodes;
+}
+
+/** @file shortcodes.php
+ *
+ * Shortcode defenitions
+ */
+
+/*============================================================================================*/
+/* Columns
+/*============================================================================================*/
+
+function tm_shortcodes_columns( $attrs, $content = null ) {
+	extract( shortcode_attrs( array(
+		'width'			=> '',
+		'align'			=> '',
+		'last'			=> '',
+		'clear'			=> '',
+		'class'			=> '',
+	), $attrs ) );
+
+	$classes = array();
+	if ( $width ) {
+		$classes[] = 'col-' . $width;
+	}
+	if ( $align == 'right' ) {
+		$classes[] = 'float-right';
+	}
+	if ( $align == 'center' ) {
+		$classes[] = 'align-center';
+	}
+	if ( $last ) {
+		$classes[] = 'col-last';
+	}
+	if ( $clear ) {
+		$classes[] = 'clear-both';
+	}
+	if ( $class ) {
+		$classes[] = $class;
+	}
+
+	$classes = trim( implode( ' ', $classes ) );
+	
+	$output = '<div class="' . $classes . '">' . $content . '</div>';
+
+	return $output;
+}
+
+function tm_shortcodes_columns_tips( $format, $long ) {
+	$output = '[col width="1-2 | 1-3 | 2-3 | 1-4 | 3-4 | 1-5 | 2-5 | 3-5 | 4-5 | 1-6 | 5-6" align="right | center" clear="clear-both | clear-left | clear-right" last="1" class="custom-class"]your content[/col]';
+	return $output;
+}
+
+
+/*============================================================================================*/
+/* Counters
+/*============================================================================================*/
+
+function tm_shortcodes_counter( $attrs, $content = null ) {
+	extract( shortcode_attrs( array(
+		'number' => '',
+		'timer' => '',
+		'class' => '',
+	), $attrs ) );
+
+	$element_id = drupal_html_id("tm_counter" . REQUEST_TIME);
+	
+	$classes = "counter";
+	if ( $class ) {
+		$classes = $classes . ' ' . $class;
+	}
+
+	$output = '<div id ="' . $element_id . '" class="' . $classes . '">';
+		$output .= '<div data-num="' . $timer . '" data-content="' . $number . '" class="num">' . $number . '</div>';
+		if ( $content ) {
+			$output .= '<div class="title">' . $content . '</div>';
+		}
+	$output .= '</div>';
+
+	return $output;
+}
+
+function tm_shortcodes_counter_tips( $format, $long ) {
+	$output = '[counter number="1 | 2 | .." timer="" class="custom-class"]Title[/counter]';
+	return $output;
+}
+
+
+/*============================================================================================*/
+/* Font Awesome Icons
+/*============================================================================================*/
+
+function tm_shortcodes_icon( $attrs, $content = null ) {
+	extract( shortcode_attrs( array(
+		'link'				=> '',
+		'class'				=> '',
+	), $attrs ) );
+
+	$classes = "fa " . $class;
+	
+	if ( $link == "" ) {
+		$output = '<i class="' . $classes . '"></i> ' . $content;
+	} else {
+		$output = '<a href="' . $link . '"><i class="' . $classes . '"></i>' . $content . '</a>';
+	}
+	
+	$output = trim( $output );
+
+	return $output;
+}
+
+function tm_shortcodes_icon_tips( $format, $long ) {
+	$output = '[icon class="fa-star | .. | .." link="http://drupal.org"]Some text here[/icon]';
+	return $output;
+}
+
+
+/*============================================================================================*/
+/* Google map
+/*============================================================================================*/
+
+function tm_shortcodes_gmap( $attrs, $content = null ) {
+	extract( shortcode_attrs( array(
+		'lat_coord'			=> '55.861263',
+		'lng_coord'			=> '-4.251604',
+		'zoom_value'		=> '15',
+		'zoom_wheel'		=> 'no',
+		'hue'				=> '',
+		'saturation'		=> 0,
+		'gamma'				=> 1,
+		'marker'			=> '',
+		'class'				=> ''
+	), $attrs ) );
+
+	$random_id	= rand();
+	$lat_coord	= floatval( $lat_coord );
+	$lng_coord	= floatval( $lng_coord );
+	$zoom_value	= intval( $zoom_value );
+	$zoom_wheel	= $zoom_wheel=='yes' ? 'true' : 'false';
+
+	$output = '<div class="google-map-api ' . $class . '">';
+		$output .= '<div id="map-canvas-' . $random_id . '" class="gmap"></div>';
+	$output .= '</div>';
+	$output .= '<script>
+			google_api_map_init_' . $random_id . '();
+			function google_api_map_init_' . $random_id . '(){
+				var map;
+				var coordData = new google.maps.LatLng(parseFloat(' . $lat_coord . '), parseFloat(' . $lng_coord . '));
+				var marker;
+
+				function initialize() {
+					var mapOptions = {
+						center: coordData,
+						scrollwheel: ' . $zoom_wheel . ',
+						styles: [ { "stylers": [ { "hue": "' . $hue . '" }, { "saturation": ' . $saturation . ' }, { "gamma": ' . $gamma . ' } ] } ],
+						zoom: ' . $zoom_value . '
+					}
+					var map = new google.maps.Map(document.getElementById("map-canvas-' . $random_id . '"), mapOptions);
+					marker = new google.maps.Marker({
+						map: map,
+						draggable: true,
+						position: coordData,
+						icon: "'. $marker .'"
+					});
+				}
+				google.maps.event.addDomListener(window, "load", initialize);
+			}
+		</script>';
+
+	return $output;
+}
+
+function tm_shortcodes_gmap_tips( $format, $long ) {
+	$output = '[gmap lat_coord="41.850033" lng_coord="-87.6500523" zoom_value="15" zoom_wheel="no" hue="#ff0000" saturation="-100 | 0 | 100" gamma="0.01 | 1 | 10" marker="http://path/to/marker.png" class="custom-class"][/gmap]';
+	return $output;
+}
+
+
+/*============================================================================================*/
+/* Piegraphs
+/*============================================================================================*/
+
+function tm_shortcodes_piegraph( $attrs, $content = null ) {
+	extract( shortcode_attrs( array(
+		'barcolor'			=> '#119fe1',
+		'linewidth' 		=> '3',
+		'trackcolor'		=> '#cccccc',
+		'percent'			=> '0',
+		'width'				=> '200',
+		'class'				=> '',
+	), $attrs ) );
+	
+	$element_id = drupal_html_id("tm_piegraph" . REQUEST_TIME);
+	
+	$classes = 'piegraph-wrap';
+	
+	if ( $class ) {
+		$classes = $classes . ' ' . $class;
+	}
+	
+	$output = '<div class="' . $classes . '">';
+		$output .= '<div class="piegraph-title">' . $content . '</div>';
+		$output .= '<div class="piegraph" data-bar-color="' . $barcolor . '" data-track-color="' . $trackcolor . '" data-percent="' . $percent . '" data-line-width="' . $linewidth . '" data-size="' . $width . '"><span class="piegraph-percent"></span></div>';
+	$output .= '</div>';
+
+	return $output;
+}
+
+function tm_shortcodes_piegraph_tips( $format, $long ) {
+	$output = '[piegraph percent="0 | 1 | .. | 100" width="1 | ... | 200 | ..." barcolor="#21c2f8" trackcolor="#cccccc" linewidth="3" class="custom-class"]Title[/piegraph]';
+	return $output;
+}
+
+
+/*============================================================================================*/
+/* Progressbars
+/*============================================================================================*/
+
+function tm_shortcodes_progressbar( $attrs, $content = null ) {
+	extract( shortcode_attrs( array(
+		'percent'			=> '',
+		'class'				=> '',
+	), $attrs ) );
+
+	$element_id = drupal_html_id('progressbar'); 
+	
+	$classes = 'progressbar';
+	
+	if ( $class ) {
+		$classes = $classes . ' ' . $class;
+	}
+	
+	$output = '<div id="' . $element_id . '" class="' . $classes . '" data-percent="' . $percent . '">';
+
+	if ( $content ) :
+		$output .= '<div class="progressbar-title">' . $content . '</div>';
+	endif;
+	
+	$output .= '<div class="progressbar-percent">' . $percent . '%</div>';
+	
+	if ( $percent ) :
+		$output .= '<div class="progressbar-wrap"><div class="progressbar-background" style="width: 0"></div></div>';
+	endif;
+	
+	$output .= '</div>';
+	
+	return $output;
+}
+
+function tm_shortcodes_progressbar_tips( $format, $long ) {
+	$output = '[progressbar percent="0 | 1 | .. | 100" class="custom-class"]Title[/progressbar]';
+	return $output;
+}

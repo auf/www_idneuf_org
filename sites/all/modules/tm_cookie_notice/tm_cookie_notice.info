@@ -1,0 +1,5 @@
+name = TM Cookie notice
+description = "Enables you to comply with UK and EU law on cookies"
+core = 7.x
+package = TM Framework
+version = "7.x-1.0"

@@ -1,0 +1,5 @@
+name = TM Animate
+description = "Provides a cross-browser library of CSS animations."
+core = 7.x
+package = TM Framework
+version = "7.x-1.0"

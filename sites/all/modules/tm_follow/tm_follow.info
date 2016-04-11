@@ -1,0 +1,10 @@
+name = TM Follow Us
+description = "Add sitewide and per user links to social network profiles"
+core = 7.x
+package = TM Framework
+version = "7.x-1.1"
+dependencies[] = tm_font_awesome
+
+files[] = tests/tm_follow.test
+
+configure = admin/config/tm_follow

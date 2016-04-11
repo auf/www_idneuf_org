@@ -1,0 +1,166 @@
+/*==========================================================================
+1. GENERAL
+===========================================================================*/
+
+.align-center,
+a.align-center {
+	display: block;
+	float: none;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.clear-both {
+	clear: both;
+}
+
+.clear-left {
+	clear: left;
+}
+
+.clear-right {
+	clear: right;
+}
+
+
+/*==========================================================================
+2. COLUMNS
+===========================================================================*/
+
+*[class|="col"],
+[class*=" col-"] {
+	float: left;
+	margin-bottom: 2em;
+	margin-right: 4%;
+}
+
+@media (max-width: 767px) {
+	*[class|="col"],
+	[class*=" col-"] {
+		float: none !important;
+		margin-bottom: 3em;
+		margin-right: 0;
+		width: auto !important;
+	}
+}
+
+*[class|="col"].float-right {
+	float: right;
+	margin-left: 4%;
+	margin-right: 0;
+}
+
+
+.col-1-2 {width: 48%;}
+.col-1-3 {width: 30.66%;}
+.col-2-3 {width: 65.33%;}
+.col-1-4 {width: 22%;}
+.col-3-4 {width: 74%;}
+.col-1-5 {width: 16.8%;}
+.col-2-5 {width: 37.6%;}
+.col-3-5 {width: 58.4%;}
+.col-4-5 {width: 79.2%;}
+.col-1-6 {width: 13.32%;}
+.col-5-6 {width: 82.67%;}
+
+.col-100 {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.col-last {
+	margin-right: 0;
+}
+
+
+/*==========================================================================
+3. PROGRESSBARS
+===========================================================================*/
+
+.progressbar .progressbar-title {
+	float: left;
+	width: 75%;
+}
+.progressbar .progressbar-percent {
+	float: right;
+	text-align: right;
+	width: 20%;
+}
+.progressbar .progressbar-wrap {
+	background: #ccc;
+	clear: both;
+	margin-bottom: 15px;
+}
+.progressbar .progressbar-background {
+	background: #119fe1;
+	height: 3px;
+}
+
+
+/*==========================================================================
+5. GOOGLE MAP
+===========================================================================*/
+
+.google-map-api {
+	background: #fff;
+	height: 300px;
+	position: relative;
+	top: 0;
+	width: 100%;
+}
+.google-map-api .gmap {
+	height: 100%;
+	width: 100%;
+}
+.google-map-api .gmap img {
+	max-width: none !important;
+}
+
+
+/*==========================================================================
+4. PIEGRAPH
+===========================================================================*/
+
+.piegraph-wrap {
+	margin: 40px 0;
+}
+.piegraph-wrap .piegraph {
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	text-align: center;
+}
+.piegraph-wrap .piegraph .piegraph-percent {
+	display: block;
+	font-size: 30px;
+	line-height: 30px;
+	margin-top: -15px;
+	position: absolute;
+	text-align: center;
+	top: 50%;
+	width: 100%;
+	z-index: 10;
+}
+
+.piegraph-wrap .piegraph-title {
+	text-align: center;
+}
+
+
+/*==========================================================================
+5. COUNTER
+===========================================================================*/
+
+[id^="tm-counter"] .num {
+	font-size: 5em;
+	font-weight: bold;
+	line-height: 1em;
+	text-align: center;
+}
+
+[id^="tm-counter"] .title {
+	font-weight: bold;
+	text-align: center;
+}
