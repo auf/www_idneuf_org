@@ -2030,13 +2030,37 @@ span.field-content{
 .view-id-calendar .views-field-field-date-et-heure .field-content{padding: 13px 0 0 46px; font-size:18px;}
 .view-id-calendar .view-content .item-list ul li{padding: 0 0 0 0; margin:0 0 0 0;}
 .fa-search{padding:24px;color:#ffffff;background-color:#be1d1f;font-size:16px;}
-.complement_recherche{background-color: #dfdfdf;padding: 23px;width:13%;}
-#simple-search-form-query{padding: 24px;background-color: #eeeeee;width: 69%;}
-.simple-search-form-submit{padding: 23px;background-color: #622974;color: #ffffff;border: 1px solid transparent;font-size:14px;}
-#simple-search-links{float:right;width:16%;font-size:15px;}
-.filtres_ressource{width:84%;display:inline-flex; padding-top: 5px;}
-.filtres_liste{ margin-left: 3%; width: 100%; padding-left: 12%; background-color: #fbfafa;}
-.filtre_title{font-size: 15px; font-weight: 900; padding: 5px; color: #622974;background-color: #f8f7f7;}
+.complement_recherche{
+	background-color: #dfdfdf;
+	/* padding: 14px; */
+	/* width: 15%; */
+	height: 64px !important;
+	border-radius: 0px !important;
+	margin: 0 8px;
+	border-color: transparent !important;
+
+}
+#simple-search-form-query{
+	margin-right: 7px;
+	background-color: #eeeeee;
+	width: 69%;
+	border-radius: 0px !important;
+	padding: 21px;
+	border-color:transparent;
+	box-shadow: inset 0 1px 1px transparent;
+}
+.simple-search-form-submit{
+	padding: 21px !important;
+	background-color: #622974;
+	color: #ffffff !important;
+	border: 1px solid transparent;
+	font-size: 14px !important;
+	}
+#simple-search-links{float:right;width:19%;font-size:15px;}
+.filtres_ressource{width:84%;display:inline-flex; padding-top: 5px;margin-top:-30px;}
+.filtres_liste{ width: 100%; padding-left: 8%; background-color: #fbfafa;}
+.filtre_title{font-size: 15px; font-weight: 900; padding: 5px; color: #622974;background-color: #f8f7f7;margin-right: 25px;
+	margin-top: 0px !important;}
 #block-views-search-search .block-content{font-size:18px;color:#622974;font-weight:900;}
 .counter{font-size: 18px;font-weight: 900;color: #be1d1f;margin-left: 42%;}
 .view-footer .view-content .views-row .views-field-body .field-content > p:nth-child(1){ font-size:13px;}
@@ -2065,3 +2089,11 @@ span.field-content{
 	font-size:12px;
 }
 .view-footer a{font-size:12px;color: #622974;}
+.input-group {
+	display: inline-flex;
+	width: 1175px;
+}
+#form_bloc_ressource .container{
+	margin-bottom:-17px !important;
+	width:100% !important;
+}

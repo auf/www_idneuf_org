@@ -4,3 +4,9 @@ sites/*/settings*.php
 # Ignore paths that contain user-generated content.
 sites/*/files
 sites/*/private
+.idea/AUF.iml
+.idea/copyright/profiles_settings.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/deployment.xml
