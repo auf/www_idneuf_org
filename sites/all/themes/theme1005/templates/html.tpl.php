@@ -73,7 +73,7 @@ print $doctype; ?>
 	<?php print $page_top;
 	print $page;
 	print $page_bottom; ?>
-	<script src="http://code.jquery.com/jquery.js"></script>
+	
 	<script src="./sites/all/themes/theme1005/js/bootstrap.min.js"></script>
 </body>
 </html>
