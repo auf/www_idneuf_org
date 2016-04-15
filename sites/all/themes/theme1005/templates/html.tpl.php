@@ -65,6 +65,7 @@ print $doctype; ?>
 		}
 	</script>
 	<!-- Bootstrap -->
+	<link href="./sites/all/themes/theme1005/css/custom-style.css" rel="stylesheet" media="screen">
 	<link href="./sites/all/themes/theme1005/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link rel="stylesheet" href="<?php echo base_path().path_to_theme() ?>/css/style-mobile.css" media="screen" id="style-mobile">
 	<link rel="stylesheet" href="<?php echo base_path().path_to_theme() ?>/css/skeleton-mobile.css" media="screen" id="skeleton-mobile">
@@ -73,7 +74,7 @@ print $doctype; ?>
 	<?php print $page_top;
 	print $page;
 	print $page_bottom; ?>
-	
+
 	<script src="./sites/all/themes/theme1005/js/bootstrap.min.js"></script>
 </body>
 </html>
