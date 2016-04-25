@@ -194,18 +194,19 @@ function drupal_set_installed_schema_version($module, $version) {
  * @see install_profile_info()
  */
 function drupal_install_profile_distribution_name() {
-  // During installation, the profile information is stored in the global
-  // installation state (it might not be saved anywhere yet).
-  if (drupal_installation_attempted()) {
-    global $install_state;
-    return $install_state['profile_info']['distribution_name'];
-  }
-  // At all other times, we load the profile via standard methods.
-  else {
-    $profile = drupal_get_profile();
-    $info = system_get_info('module', $profile);
-    return $info['distribution_name'];
-  }
+	// During installation, the profile information is stored in the global
+	// installation state (it might not be saved anywhere yet).
+	if (drupal_installation_attempted()) {
+		global $install_state;
+		return $install_state['profile_info']['distribution_name'];
+	}
+	// At all other times, we load the profile via standard methods.
+	else {
+		$profile = drupal_get_profile();
+		$info = system_get_info('module', $profile);
+		if ( ! array_key_exists('distribution_name', $info)) $info['distribution_name'] = 'Drupal';
+		return $info['distribution_name'];
+	}
 }
 
 /**
@@ -653,13 +654,6 @@ function drupal_rewrite_settings($settings = array(), $prefix = '') {
     if ($fp && fwrite($fp, $buffer) === FALSE) {
       throw new Exception(st('Failed to modify %settings. Verify the file permissions.', array('%settings' => $settings_file)));
     }
-    else {
-      // The existing settings.php file might have been included already. In
-      // case an opcode cache is enabled, the rewritten contents of the file
-      // will not be reflected in this process. Ensure to invalidate the file
-      // in case an opcode cache is enabled.
-      drupal_clear_opcode_cache(DRUPAL_ROOT . '/' . $settings_file);
-    }
   }
   else {
     throw new Exception(st('Failed to open %settings. Verify the file permissions.', array('%settings' => $default_settings)));
@@ -750,7 +744,7 @@ function drupal_install_system() {
 /**
  * Uninstalls a given list of disabled modules.
  *
- * @param string[] $module_list
+ * @param array $module_list
  *   The modules to uninstall. It is the caller's responsibility to ensure that
  *   all modules in this list have already been disabled before this function
  *   is called.
@@ -769,7 +763,6 @@ function drupal_install_system() {
  *   included in $module_list).
  *
  * @see module_disable()
- * @see module_enable()
  */
 function drupal_uninstall_modules($module_list = array(), $uninstall_dependents = TRUE) {
   if ($uninstall_dependents) {

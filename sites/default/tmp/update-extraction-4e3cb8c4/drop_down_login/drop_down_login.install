@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for drop_down_login module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function drop_down_login_uninstall() {
+  // Delete all Variables.
+  db_delete('variable')
+    ->condition('name', 'drop_down_login_%', 'LIKE')
+    ->execute();
+  cache_clear_all('variables', 'cache_bootstrap');
+}

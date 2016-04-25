@@ -1,8 +1,0 @@
-.form-item-image {
-  // Important needed to break styles of "Shiny" theme.
-  border: 1px solid $border-color !important;
-  padding: 10px !important;
-  & > label {
-    display: none !important;
-  }
-}

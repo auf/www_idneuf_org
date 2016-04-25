@@ -1,0 +1,1 @@
+window.tinyMCEPreInit = {"base":"\/PhpstormProjects\/www_idneuf_org\/sites\/all\/libraries\/tinymce\/jscripts\/tiny_mce","suffix":"","query":""};
