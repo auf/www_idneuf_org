@@ -92,40 +92,7 @@
 			endif; ?>
 
 			<!-- Node meta -->
-			<?php if ( $display_submitted ) : ?>
-				<div class="submitted node-submitted" role="contentinfo">
-					<ul class="submitted-list clearfix">
-						<?php if ( $user_picture ) : // author icon ?>
-							<li class="node-userpic"><?php print $user_picture; ?></li>
-						<?php endif; ?>
 	
-						<?php if ( $submitted ) : // node author ?>
-							<li class="node-author"><span class="fa fa-fw fa-user"></span> <?php print $submitted; ?></li>
-						<?php endif;
-	
-						if ( $submitted_pubdate ) : // publish date ?>
-							<li class="node-time" >
-								<time datetime="<?php print $submitted_pubdate; ?>">
-									<span class="fa fa-fw fa-calendar"></span> <?php print $submitted_date; ?>
-								</time>
-							</li>
-						<?php endif; ?>
-	
-						<li class="node-views">
-							<span class="fa fa-fw fa-eye"></span>
-							<?php print $hitcount['totalcount'] ? $hitcount['totalcount'] : "0"; // node views
-							print " view(s)"; ?>
-						</li>
-	
-						<?php if ( $teaser ) : // number of comments ?>
-							<li class="node-comments">
-								<span class="fa fa-fw fa-comment"></span>
-								<a href="<?php echo $node_url;?>#comments"><?php print $comment_count . t( " comment(s)" ); ?> </a>
-							</li>
-						<?php endif; ?>
-					</ul>
-				</div>
-			<?php endif; ?>
 		</header>
 	<?php endif; ?>
 
@@ -138,18 +105,66 @@
 		<!-- Node content -->
 		<?php print render( $content ); ?>
 	</div>
-
+		<?php if ( $display_submitted ) : ?>
+				<div class="submitted node-submitted" role="contentinfo">
+					<ul class="submitted-list clearfix">
+           	<?php   if ( $submitted_pubdate ) : // publish date ?>
+							<li class="node-time" >
+								<time datetime="<?php print $submitted_pubdate; ?>">
+									<span class="fa fa-fw fa-calendar"></span> <?php print $submitted_date; ?>
+								</time>
+							</li>
+						<?php endif; ?>
+	
+						<?php if ( $user_picture ) : // author icon ?>
+							<li class="node-userpic"><?php print $user_picture; ?></li>
+						<?php endif; ?>
+	
+						<?php if ( $submitted ) : // node author ?>
+							<li class="node-author"><span class="fa fa-fw fa-user"></span> <?php print $submitted; ?></li>
+						<?php endif; ?>
+	
+						
+					<!-- 	<li class="node-views">
+							<span class="fa fa-fw fa-eye"></span>
+							<?php print $hitcount['totalcount'] ? $hitcount['totalcount'] : "0"; // node views
+							print " view(s)"; ?>
+						</li>-->
+	
+				 
+							<li class="node-comments">
+								<span class="fa fa-fw fa-comment"></span>
+								<a href="<?php echo $node_url;?>#comments"><?php print $comment_count . t( " comment(s)" ); ?> </a>
+							</li>
+			
+					</ul>
+				</div>
+			<?php endif; ?>
+      <div class="Partager col-md-12">
+      <div class="labelpartage col-md-2">Partager !</div>
+      <!-- AddThis Button BEGIN -->
+<div class="col-md-9 addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_facebook" title="Facebook"></a>
+<a class="addthis_button_twitter" title="Twitter"></a>
+<a class="addthis_button_pinterest_share" title="pinterest"></a>
+<a class="addthis_button_email" title="e-mail"></a>
+<a class="addthis_button_google" title="google"></a>
+<a class="addthis_button_linkedin" title="linkedin"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dedda0c245832a7"></script>
+<!-- AddThis Button END -->
+  </div>    
 	<?php if ( !empty( $content['field_tags'] ) || !empty( $content['links'] ) ) : ?>
 		<footer class="footer node-footer" role="contentinfo">
 			<!-- Node tags -->
 			<?php print render( $content['field_tags'] ); ?>
 			
 			<!-- Node links -->
-			<?php if ( $links = render( $content['links'] ) ): ?>
+			<!--	<?php if ( $links = render( $content['links'] ) ): ?>
 				<div class="node-links clearfix">
 					<?php print $links; ?>
 				</div>
-			<?php endif; ?>
+			<?php endif; ?>-->
 		</footer>
 	<?php endif;
 

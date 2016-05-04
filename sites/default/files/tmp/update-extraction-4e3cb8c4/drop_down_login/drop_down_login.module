@@ -1,0 +1,264 @@
+<?php
+/**
+ * @file
+ * Module file for Drop Down Login.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function drop_down_login_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case 'admin/help#drop_down_login':
+      $output .= '<p>' . t('This module provide a drop down block for user login,User can display this block in any region for all / specified pages.This is a tiny project, Login block display on login button toggle,if javascript is disabled clicking on the button will redirect user to user login page.') . '</p>';
+      $output .= '<h6>' . t('Installation') . '</h6>';
+      $output .= '<ol>';
+      $output .= '<li>' . t('Install as usual, see <a href="@2367405">https://www.drupal.org/node/2367405</a> for further information.', array('@2367405' => 'https://www.drupal.org/node/2367405')) . '</li>';
+      $output .= '<li>' . t('Copy the entire drop_down_login directory the Drupal sites/all/modules/custom directory.') . '</li>';
+      $output .= '<li>' . t('Login as an administrator. Enable the module in the "Administer" -> "Modules".') . '</li>';
+      $output .= '</ol>';
+      $output .= '<h6>' . t('Configuration') . '</h6>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('Add the new block "Drop down Login" to the required region via "Administer" -> "Structure" -> "Blocks".') . '</li>';
+      $output .= '</ul>';
+      break;
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function drop_down_login_block_info() {
+  $blocks['drop_down_login'] = array(
+    'info' => t('Drop Down Login'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function drop_down_login_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'drop_down_login':
+      if (user_is_anonymous()) {
+        // Variables for login.
+        // Block login form.
+        $login_form = drupal_get_form('user_login_block');
+        $login_url = url('user');
+        $login_link_text = t('Login');
+        $block['content']['#markup'] = theme(
+          'drop_down_login',
+          array(
+            'login_form' => $login_form,
+            'login_url' => $login_url,
+            'login_link_text' => $login_link_text,
+          )
+        );
+      }
+      else {
+        // Check drop down login settings.
+        $myaccount = variable_get('drop_down_login_want_myaccount');
+        // Required my account drop down.
+        if (isset($myaccount) && !empty($myaccount)) {
+          $myaccount_url = url('user');
+          $myaccount_text = t('My Account');
+
+          $myaccount_links = variable_get('drop_down_login_myaccount_links', array());
+          // Sort links by weight.
+          usort($myaccount_links, function($a, $b) {
+            return $a['weight'] - $b['weight'];
+          });
+          global $user;
+          $block['content']['#markup'] = theme(
+            'drop_down_myaccount',
+            array(
+              'myaccount_links' => $myaccount_links,
+              'myaccount_url' => $myaccount_url,
+              'myaccount_text' => $myaccount_text,
+              'account' => $user,
+            )
+          );
+        }
+        else {
+          // Variables for Logout.
+          $logout_url = url('user/logout');
+          $logout_link_text = t('Logout');
+          $block['content']['#markup'] = theme(
+            'drop_down_logout',
+            array(
+              'logout_url' => $logout_url,
+              'logout_link_text' => $logout_link_text,
+            )
+          );
+        }
+      }
+      break;
+  }
+
+  // Attching required js and css.
+  $block['content']['#attached'] = array(
+    'css' => array(
+      drupal_get_path('module', 'drop_down_login') . '/theme/drop_down_login.css',
+    ),
+    'js' => array(
+      drupal_get_path('module', 'drop_down_login') . '/theme/drop_down_login.js',
+    ),
+  );
+  return $block;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function drop_down_login_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'user_login_block') {
+    // Validate handler for login form.
+    $form["#validate"][] = 'drop_down_login_validate_login';
+    // Submit handler for login form.
+    $form["#submit"][] = 'drop_down_login_submit_login';
+  }
+}
+
+/**
+ * Validate function to validate login form.
+ */
+function drop_down_login_validate_login($form, &$form_state) {
+  // On successful login, the uid is set in form_state.
+  if (empty($form_state["uid"])) {
+    $attributes = array();
+    if (!drupal_is_front_page()) {
+      // No query string passed for homepage.
+      $attributes = array('query' => drupal_get_destination());
+    }
+    $form_state['redirect'] = array('user', $attributes);
+    drupal_redirect_form($form_state);
+  }
+}
+
+/**
+ * Submit handler for login form.
+ */
+function drop_down_login_submit_login($form, &$form_state) {
+  if (drupal_is_front_page()) {
+    // Redirect to maintain homepage after login.
+    $form_state['redirect'] = array(
+      '<front>',
+      array(
+        'query' => drupal_get_query_parameters(),
+      ),
+    );
+  }
+  else {
+    // Redirect to maintain the current page.
+    $form_state['redirect'] = array(
+      current_path(),
+      array(
+        'query' => drupal_get_query_parameters(),
+      ),
+    );
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function drop_down_login_permission() {
+  return array(
+    'drop down login settings' => array(
+      'title' => t('Drop down login settings'),
+      'description' => t('Permission for settings drop down login.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function drop_down_login_menu() {
+  $items = array();
+  $items['admin/config/user-interface/drop_down_login/settings'] = array(
+    'title' => 'Drop down login settings',
+    'description' => 'Drop down login settings forms page.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('drop_down_login_settings'),
+    'access arguments' => array('drop down login settings'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'drop_down_login.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function drop_down_login_theme($existing, $type, $theme, $path) {
+  return array(
+    'drop_down_login' => array(
+      'template' => 'drop_down_login',
+      'path' => $path . '/theme',
+      'variable' => array(
+        'login_form' => NULL,
+        'login_url' => NULL,
+        'login_link_text' => NULL,
+      ),
+    ),
+    'drop_down_logout' => array(
+      'template' => 'drop_down_logout',
+      'path' => $path . '/theme',
+      'variable' => array(
+        'logout_url' => NULL,
+        'logout_link_text' => NULL,
+      ),
+    ),
+    'drop_down_myaccount' => array(
+      'template' => 'drop_down_myaccount',
+      'path' => $path . '/theme',
+      'variable' => array(
+        'myaccount_links' => NULL,
+        'myaccount_url' => NULL,
+        'muaccount_link_text' => NULL,
+        'account' => NULL,
+      ),
+    ),
+    'drop_down_login_dragandrop' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Theme for make our multifield draggable.
+ */
+function theme_drop_down_login_dragandrop($variables) {
+  $element = $variables['element'];
+  $output = '';
+  $rows = array();
+  foreach (element_children($element) as $id) {
+    if (!empty($element[$id]['menu']) && !empty($element[$id]['weight'])) {
+      $rows[$id]['data']['menu'] = drupal_render($element[$id]['menu']);
+      $rows[$id]['data']['weight'] = drupal_render($element[$id]['weight']);
+      $rows[$id]['class'][] = 'draggable';
+    }
+  }
+
+  // We now define the table header values.  Ensure that the 'header' count
+  // matches the final column count for your table.
+  $header = array(t('Menu'), t('Weight'));
+  // Aet a uniq id for this table.
+  $table_id = 'drop-down-login-multifield-table_' . $element['#id'];
+  // We can now render our tabledrag table for output.
+  $output .= theme('table', array(
+    'header' => $header,
+    'rows' => $rows,
+    'attributes' => array('id' => $table_id),
+  ));
+  // Just in case...
+  $output .= drupal_render_children($element);
+  // Include js.
+  drupal_add_tabledrag($table_id, 'order', 'sibling', 'drop-down-login-item-weight');
+  return $output;
+}

@@ -56,6 +56,12 @@
  */
 ?>
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+		<!-- Comment meta: permalink, author, date -->
+			<?php if ( $submitted ) :?>
+				<div class="submitted comment-submitted">
+					<?php	print t( ' WRITTEN BY !username.', array( '!username' => $author) ); ?>
+				</div>
+			<?php endif; ?>
 	<?php if ( $picture ) :
 		print $picture;
 	endif; ?>
@@ -72,13 +78,6 @@
 				<h6 class="title comment-title"><?php print $title ?></h6>
 			<?php print render( $title_suffix ); ?>
 
-			<!-- Comment meta: permalink, author, date -->
-			<?php if ( $submitted ) :?>
-				<div class="submitted comment-submitted">
-					<?php print $permalink;
-					print t( ' Submitted by !username on !datetime.', array( '!username' => $author, '!datetime' => '<time datetime="' . $datetime . '">' . $created . '</time>' ) ); ?>
-				</div>
-			<?php endif; ?>
 		</header>
 
 		<div class="content comment-content">
@@ -87,6 +86,9 @@
 
 			<!-- Comment content -->
 			<?php print render( $content ); ?>
+ 	<!-- all comments -->
+ <div class="all_post_comment">
+<a href="/?q=comments"><?php	print t( ' VIEW ALL POST BY: !username.', array( '!username' => $author) ); ?></a>
 
 			<!-- Comment author signature -->
 			<?php if ( $signature ) : ?>
@@ -97,12 +99,14 @@
 		</div>
 
 		<!-- Comment links -->
-		<?php if ( $links = render( $content['links'] ) ) : ?>
+		<!--<?php if ( $links = render( $content['links'] ) ) : ?>
 			<footer class="comment-footer">
 				<div class="comment-links clearfix">
 					<?php print $links; ?>
 				</div>
 			</footer>
-		<?php endif; ?>
-	</div>
+		<?php endif; ?>-->
+  
+</div>
+
 </div>

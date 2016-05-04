@@ -1,0 +1,11 @@
+name = Drop Down Login
+description = "Creates a drop-down login form as a block. Automatically reverts to a link when js is not available"
+configure=admin/config/user-interface/drop_down_login/settings
+core = 7.x
+
+; Information added by Drupal.org packaging script on 2016-04-14
+version = "7.x-1.3"
+core = "7.x"
+project = "drop_down_login"
+datestamp = "1460630137"
+

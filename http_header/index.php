@@ -1,4 +1,4 @@
-
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 <?php
 // cette fonction tÃ©cupÃ¨re le contenu d'un document distant
 function geturl($laurl){

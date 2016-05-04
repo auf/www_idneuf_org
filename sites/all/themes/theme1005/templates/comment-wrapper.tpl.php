@@ -39,7 +39,7 @@
 	<!-- Comments tree -->
 	<?php if ( $content['comments'] /*&& $node->type != 'forum'*/ ) :
 		print render( $title_prefix ); ?>
-			<h3 class="title comments-title"><?php print t( 'Comments' ); ?></h3>
+			<!--	<h3 class="title comments-title"><?php print t( 'Comments' ); ?></h3> -->
 		<?php print render( $title_suffix );
 		print render( $content['comments'] );
 	else :
