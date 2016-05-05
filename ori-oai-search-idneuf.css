@@ -7,12 +7,12 @@
 @import url("http://testv2.ori-oai.org/idneuf-dev/css/oos-content.css");
 @import url("http://testv2.ori-oai.org/idneuf-dev/js/bootstrap/css/bootstrap.min.css");
 #ori-oai-search{color:#888 !important;
-	font-family:'Ubuntu', sans-serif !important;
-	font-size:13px !important;
-	line-height:21px;
-	font-weight:300;
-	min-width:1250px;
-	position:relative; }
+    font-family:'Ubuntu', sans-serif !important;
+    font-size:13px !important;
+    line-height:21px;
+    font-weight:300;
+    max-width:1170px;
+    position:relative; }
 
 body, #ori-oai-search header, #ori-oai-search footer#footer div#footer-middle{background: #fff !important;}
 .csstransforms .region-sidebar-second,.csstransforms #block-views-similar-entries-block{display:none;}
@@ -24,7 +24,7 @@ body, #ori-oai-search header, #ori-oai-search footer#footer div#footer-middle{ba
 #ori-oai-search .panel-default > .panel-heading h4.panel-title{margin-top:5px;}
 #ori-oai-search #advanced-form .panel-group .panel-body{background:#eeeeee !important;border-color:transparent;padding-right:0 !important;}
 #ori-oai-search h4 a{color:#622974 !important;font-size: 18px;font-weight: 600;}
-#ori-oai-search #advanced-help .alert-dismissible .close{ 
+#ori-oai-search #advanced-help .alert-dismissible .close{
     right: -28px !important;
     top: -16px !important;
     color: #5e91cd !important;
@@ -32,9 +32,9 @@ body, #ori-oai-search header, #ori-oai-search footer#footer div#footer-middle{ba
 #ori-oai-search ul.thematic-full-tree li a{font-size:13px !important;}
 .panel-group .panel{border-color:transparent;}
 #ori-oai-search header{background-color:#fff !important;}
-#ori-oai-search div#form_bloc_ressource div.container{background-color:#fff !important;}
+#ori-oai-search div#form_bloc_ressource div.container{background-color:#fff !important;padding: 0 127px 55px 0px;}
 .jNiceSelectWrapper{padding: 0px 0px 0px 18px;}
-.jNiceSelectWrapper span,.jNiceSelectWrapper div span{display:none !important;} 
+.jNiceSelectWrapper span,.jNiceSelectWrapper div span{display:none !important;}
 .complement_recherche{width:100% !important; float:left;margin:0 auto !important;}
 .input-group{display:inline-flex !important;}
 #ori-oai-search div#form_bloc_ressource .input-group .input_form{
@@ -44,14 +44,13 @@ body, #ori-oai-search header, #ori-oai-search footer#footer div#footer-middle{ba
     border-radius: 0px !important;
     margin: 0 6px 0 6px !important;
     float: left !important;
-    width: 69% !important;
 }
 #ori-oai-search div#form_bloc_ressource .input-group .input-group-addon {
     padding: 0px !important;
     height: auto !important;
     width: 48px;
 }
-#ori-oai-search div#form_bloc_ressource div.container{padding-left:0px !important;padding-bottom:55px !important;}
+
 #ori-oai-search div#form_bloc_ressource .input-group .input-group-btn .btn{
     width: 161px !important;
     height: 64px !important;
@@ -145,7 +144,7 @@ body, #ori-oai-search header, #ori-oai-search footer#footer div#footer-middle{ba
 #ori-oai-search div#refine-search.refine-search-top-false ul.liste_filtre_niveau1 li.filtre_niveau1.actif > span:first-child::after, #ori-oai-search div#rebound-search ul#rebounds li.rebound.actif > span:first-child::after{content:"\f054" !important;color:#c5c5c5 !important;}
 #ori-oai-search div.blog-wrapper div.element-item div.item-ressource div.body div.themes_item ul.theme_liste li{display:block !important;}
 #ori-oai-search div.blog-wrapper div.element-item div.item-ressource div.body div.themes_item ul.theme_liste li:before,#ori-oai-search div.notice-wrapper-content div.entete_ressource div.themes_ressource ul.themes_liste_ressource li:first-child::before,#ori-oai-search ul.theme_liste li:nth-child(n+2):before, #ori-oai-search ul.themes_liste_ressource li:nth-child(n+2):before{font-family: FontAwesome;font-size: 13px;
-content:"\f054" !important;color:#6f2476 !important;background:transparent !important;margin-left: 4px;}
+    content:"\f054" !important;color:#6f2476 !important;background:transparent !important;margin-left: 4px;}
 .btn-primary{width:100px !important;height:37px !important;vertical-align:inherit !important;border-radius:2px !important;}
 .btn-default{color:#622974 !important; background-color:#ffffff !important;border:1px solid #622974 !important;}
 #ori-oai-search #advanced-form #advanced-language{padding-right:0px !important;width: 49.5% !important;}
@@ -221,7 +220,7 @@ input[type="checkbox"]:checked,input[type="radio"]:checked {
 #ori-oai-search div.notice-wrapper-content div.entete_ressource div.chapo_ressource span{color:#898989 !important;}
 #ori-oai-search div.notice-wrapper-content div.information_ressource{padding: 26px 0 0 0 1important;border-top: 1px solid transparent !important;border-bottom: 1px solid transparent !important;}
 #ori-oai-search div.notice-wrapper-content div.information_ressource div.categorie_date_ressource,#ori-oai-search div.notice-wrapper-content div.information_ressource div.categorie_date_ressource span.date_creation,#ori-oai-search .text-from-editor h2{color:#6f2476 !important;background-color:#fff;letter-spacing: 1px;}
-#ori-oai-search div.notice-wrapper-content div.content_ressource h3{margin-top:0px !important;} 
+#ori-oai-search div.notice-wrapper-content div.content_ressource h3{margin-top:0px !important;}
 #ori-oai-search div.notice-wrapper-content div.content_ressource h3:nth-child(5){background:#fff !important;color:black !important;}
 #ori-oai-search div.notice-wrapper-content div.content_ressource h4{color:#8f8f8f;font-size:17px !important;}
 #ori-oai-search .text-from-editor p,#ori-oai-search div.notice-wrapper-content div.content_ressource ul li,#ori-oai-search .span-description,#ori-oai-search div.notice-wrapper-content div.entete_ressource div.chapo_ressource span,#ori-oai-search div.notice-wrapper-content div.entete_ressource div.themes_ressource ul.themes_liste_ressource li a,#ori-oai-search div.notice-wrapper-content div.content_ressource div{font-size:13px !important;color:#888888;}

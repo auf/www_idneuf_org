@@ -164,8 +164,6 @@
 		max-width:40%;
 	}
 	.view-slider .flex-caption .inner { width:100%; }
-	.header-section-1 .col1 { float:none; }
-	.header-section-1 .col2 { float:none; }
 }
 @media (max-width: 479px) {
 	#comments .comment .comment-wrapper { overflow:visible; }
