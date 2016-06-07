@@ -69,9 +69,10 @@
  */
 ?>
 
-<?php
+<?php 
+
 $path =current_path();
-if($path==='http_header'):
+if($path==='node/147'):
 ?>
 
 	<!-- Header
@@ -94,7 +95,7 @@ if($path==='http_header'):
 							<?php if ( $logo || $site_name || $site_slogan ) :?>
 								<div id="logo" class="logo">
 									<?php if ( $logo ) : // logo image ?>
-										<a href="<?php print $front_page; ?>" title="<?php print t( 'Home' ); ?>" rel="home" id="img-logo" class="img-logo">
+									<a href="<?php print $front_page; ?>" title="<?php print t( 'Home' ); ?>" rel="home" id="img-logo" class="img-logo">
 											<img src="<?php print $logo; ?>" alt="<?php print t( 'Home' ); ?>">
 										</a>
 									<?php endif;
@@ -118,35 +119,16 @@ if($path==='http_header'):
 							<!-- Region Menu -->
 							<?php if ( $page['menu'] ) :
 								print render( $page['menu'] );
+                                          
 							endif; ?>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Region Slider -->
-			<?php if ( $page['slider'] ) : 
-				theme1005_region_preffix ( 'slider' );
-					print render( $page['slider'] );
-				theme1005_region_suffix ( 'slider' );
-			endif; ?>
-
-			<!-- Region Header -->
-			<?php if ( $page['header'] ) : 
-				theme1005_region_preffix ( 'header' );
-					print render( $page['header'] );
-				theme1005_region_suffix ( 'header' );
-			endif; ?>
-
-			<!-- Region Header bottom -->
-			<?php if ( $page['header_bottom'] ) : 
-				theme1005_region_preffix ( 'header_bottom' );
-					print render( $page['header_bottom'] );
-				theme1005_region_suffix ( 'header_bottom' );
-			endif; ?>
+		
 		</header>
 
-<?php elseif ($path==='http_header'): ?>
+<?php elseif ($path==='node/148'): ?>
 <!-- Footer
 		======================================================================================= -->
 		<footer id="footer" class="footer page-footer" role="contentinfo">
@@ -205,7 +187,7 @@ endif; ?>
 							<?php if ( $logo || $site_name || $site_slogan ) :?>
 								<div id="logo" class="logo">
 									<?php if ( $logo ) : // logo image ?>
-										<a href="<?php print $front_page; ?>" title="<?php print t( 'Home' ); ?>" rel="home" id="img-logo" class="img-logo">
+										<a href="<?php print 'http://'.$_SERVER['HTTP_HOST']; ?>" title="<?php print t( 'Home' ); ?>" rel="home" id="img-logo" class="img-logo">
 											<img src="<?php print $logo; ?>" alt="<?php print t( 'Home' ); ?>">
 										</a>
 									<?php endif;
@@ -229,7 +211,7 @@ endif; ?>
 							<!-- Region Menu -->
 							<?php if ( $page['menu'] ) :
 								print render( $page['menu'] );
-							endif; ?>
+       							endif; ?>
 						</div>
 					</div>
 				</div>
@@ -256,10 +238,13 @@ endif; ?>
 				theme1005_region_suffix ( 'header_bottom' );
 			endif; ?>
 		</header>
+   
+ 	
 
 		<!-- Content
 		======================================================================================= -->
 		<div id="main-wrapper" class="main-wrapper" role="main">
+   
 			<!-- Region content top -->
 			<?php if ( $page['content_top'] ) : 
 				theme1005_region_preffix ( 'content_top' );
