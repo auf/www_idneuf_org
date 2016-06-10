@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+  <entity name="file" type="image" id="1" method="update">
+
+    <conditions>
+      <!-- assuming there is a file (file_exists) in sites/default/files/file.png -->
+      <condition type="property" name="uri">public://file.png</condition>
+    </conditions>
+    <properties>
+      <!-- importing files
+        -> name -> required, name of property which will hold ID of saved file
+        -> file -> required, url of file to download
+        -> file_name -> not required, name of file in Drupal system,
+                        drupal will rename this file if already exists
+       -->
+      <property name="fid" file="http://3.bp.blogspot.com/_UZImdYAiry8/TNEpp5QY-WI/AAAAAAAAU60/jwXpsYMsAu0/s1600/Drupal_logo.jpg" file_name="drupal.png">
+      </property>
+    </properties>
+  </entity>
+</entities>

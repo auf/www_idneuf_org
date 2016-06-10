@@ -67,6 +67,8 @@ print $doctype; ?>
  <link rel="stylesheet" href="<?php echo base_path().path_to_theme() ?>/css/style-mobile.css" media="screen" id="style-mobile">
 	<link rel="stylesheet" href="<?php echo base_path().path_to_theme() ?>/css/skeleton-mobile.css" media="screen" id="skeleton-mobile">
 	<link rel="stylesheet" href="<?php echo base_path().path_to_theme() ?>/css/style.css" media="print" id="style-site">
+	<link rel="stylesheet" href="<?php echo base_path().path_to_theme() ?>/css/custom.css" media="print" id="style-site">
+
 </head>
 <body id="body" class="<?php print $classes; ?>" <?php print $attributes;?>>
 	<?php print $page_top;

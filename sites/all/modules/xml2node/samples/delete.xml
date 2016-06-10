@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    
+<!-- All entity elements -->
+<entities>
+  <entity name="node" type="article" id="10" method = "delete">
+    <!-- Conditions for selecting entities in case of "delete" and "update" acton -->
+    <!-- EntityFieldQuery object is created and all conditions are passed to this object -->
+    <!-- In case of "create" not required -->
+    <conditions>
+      <!--
+        -> in case of "type=property"
+        -> name -> required, represents "name" of entity property
+        -> read documentation on EntityFieldQuery->propertyCondition
+       -->
+      <condition type="property" name="title">Another title</condition>
+      <!--
+        -> in case of "type=field"
+        -> name -> required, represents entity field name
+        -> column -> not required, represents column name defined in field schema
+        -> lang -> not required, represents language of field
+        -> delta -> not required, represents item delta of field
+        -> read documentation on EntityFieldQuery->propertyCondition
+       -->
+      <condition type="field" name="body" column="format">1</condition>
+    </conditions>
+  </entity>
+</entities>

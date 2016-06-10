@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    
+<!-- All entity elements -->
+<entities>
+  
+  <!-- Each entity attributes:
+     name -> required, entity name ( node, comment, taxonomy_term, user, ... )
+     type -> required, entity bundle ( node -> article, basic_page, ... )
+     id -> required(!!!important!!!), record id, this serves as primary identifier for dependency references
+        -> each entity need this field
+        -> can be any value you choose
+     method -> not required, decides what operation will be performed.
+            -> possible values "create" (default), "delete", "update"
+            -> if "delete" or "update", importer will expect that conditions for selecting entity(ies) will be
+            defined
+   -->
+  
+  <!-- Define entity properties -->
+  <entity name="node" type="article" id="10">
+    <properties>
+      <!-- name-> required -> Name of property -->
+      <property name="type">article</property>
+      <property name="title">A sample Title 1</property>
+      <property name="comment">2</property>
+    </properties>
+    
+    <!-- Define entity fields -->
+    <fields>
+      <!-- field
+       -> name -> required, field name
+      -->
+      <field name="field_image">
+        <!-- language
+          -> name -> required, language name
+        -->
+        <lang name="und">
+          <!-- items -->
+          <item>
+            <!-- value
+              -> name -> required, name of array key
+              -> ref_to -> indicates there is dependency on entity with id == 40
+              Dependency was found, we are starting to build up dependency tree.
+              The required entity will be build first, and required value, specified
+              by ref_property will be returned.
+
+              In this case entity 'file' will be created and value
+                $file->$ref_property which equals $file->fid 
+              will be returned
+              
+            -->
+            <value name="fid" ref_to="40" ref_property="fid"></value>
+          </item>
+        </lang>
+      </field>
+      <field name="body">
+        <lang name="und">
+          <item>
+            <value name="value">This is my lead text.</value>
+            <value name="format">1</value>
+          </item>
+        </lang>
+      </field>
+      <field name="field_tags">
+        <lang name="und">
+          <item>
+            <value name="tid" ref_to="30" ref_property="tid"></value>
+          </item>
+        </lang>
+      </field>
+    </fields>
+  </entity>
+
+  <entity name="comment" type="default" id="20">
+    <properties>
+      <property name="nid" ref_to="10" ref_property="nid"></property>
+      <property name="uid">1</property>
+      <property name="subject">test</property>
+    </properties>
+    <fields>
+      <field name="comment_body">
+        <lang name="und">
+          <item>
+            <value name="value">This is my lead text.</value>
+            <value name="format">filtered_html</value>
+          </item>
+        </lang>
+      </field>
+    </fields>
+  </entity>
+
+  <entity name="taxonomy_term" type="default" id="30">
+    <properties>
+      <property name="name">asdasd</property>
+      <property name="vid">1</property>
+      <property name="vocabulary_machine_name">tags</property>
+    </properties>
+  </entity>
+
+  <entity name="file" type="image" id="40">
+    <properties>
+      <!-- importing files
+        -> name -> required, name of property which will hold ID of saved file
+        -> file -> required, url of file to download
+        -> file_name -> not required, name of file in Drupal system,
+                        drupal will rename this file if already exists
+       -->
+
+      <property
+          name="fid"
+          file="http://denver2012.drupal.org/sites/all/themes/denver2012/images/logo.png"
+          file_name="drupalcon.png"
+          belongs_to_entity = "node"
+          belongs_to_bundle = "article"
+          belongs_to_field = "field_image"
+        ></property>
+    </properties>
+  </entity>
+</entities>

@@ -1,0 +1,5 @@
+.odd .imported      { background-color: #dfefa8; }
+.even .imported     { background-color: #dbe472; }
+
+.odd .not-imported      { background-color: #efb3a8; }
+.even .not-imported     { background-color: #e59889; }

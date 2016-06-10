@@ -400,14 +400,14 @@ function theme1005_menu_link( array $vars ) {
 	if ( $element['#below'] ) {
 		$sub_menu = drupal_render( $element['#below'] );
 	}
-	
+	$element['#localized_options']['absolute'] = true;
 	$output = l( $element['#title'], $element['#href'], $element['#localized_options'] );
 	// Adding a class depending on the TITLE of the link (not constant)
 	$element['#attributes']['class'][] = theme1005_id_safe( $element['#title'] );
 	// Adding a class depending on the ID of the link (constant)
 	$element['#attributes']['class'][] = 'mid-' . $element['#original_link']['mlid'];
 	
-	return '<li' . drupal_attributes( $element['#attributes'] ) . '>' . $output . $sub_menu . "</li>\n";
+	return '<li' . 'http://'.$_SERVER['HTTP_HOST'].drupal_attributes( $element['#attributes'] ) . '>' . $output . $sub_menu . "</li>\n";
 }
 
 /**
@@ -572,7 +572,7 @@ function theme1005_form_contact_site_form_alter( &$form, &$form_state, $form_id 
 	
 	$form['reset'] = array(
 		'#type' => 'markup',
-		'#markup' => '<input class="form-button" type="reset" value="' . t( "Clear" ) . '">',
+		'#markup' => '<input class="form-button" type="reset" value="' . t( "Effacer" ) . '">',
 		'#weight' => 1,
 	);
 }

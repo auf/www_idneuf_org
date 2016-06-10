@@ -1,0 +1,382 @@
+<?php
+
+/*
+ * @file
+ *
+ * @author Jan Azzati - Previon AG
+ * @author blueminds.eu
+ */
+define('XML2NODE_METHOD_BATCH', 'batch');
+define('XML2NODE_METHOD_QUEUE', 'queue');
+
+require_once 'xml2node.queue.inc';
+require_once 'xml2node.migrate.inc';
+require_once 'includes/xml2node.XMLReporter.inc';
+
+/**
+ * Implementation of HOOK_init()
+ * @return void
+ */
+function xml2node_init() {
+
+}
+
+/**
+ * Implements HOOK_menu()
+ * @return array
+ */
+function xml2node_menu() {
+
+  $items['admin/config/xml2node'] = array(
+    'title' => 'xml2node',
+    'description' => 'Adjust xml2node import settings or import nodes',
+    'position' => 'left',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/config/xml2node/settings'] = array(
+    'title' => 'Settings',
+    'description' => 'xml2node Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('xml2node_settings_form'),
+    'access arguments' => array('access administration pages'),
+    'file' => 'xml2node.settings.inc',
+    'weight' => 1,
+  );
+
+  $items['admin/config/xml2node/queue'] = array(
+    'title' => 'Queue Status',
+    'description' => 'Queue Status',
+    'page callback' => 'xml2node_show_queue_status',
+    'page arguments' => array(),
+    'access arguments' => array('access administration pages'),
+    'file' => 'xml2node.settings.inc',
+    'weight' => 2,
+  );
+
+  $items['admin/structure/xml2node/import'] = array(
+    'title' => 'XML2node import',
+    'description' => 'Import Nodes from a XML file',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'page callback' => 'xml2node_page_import',
+    'file' => 'xml2node.pages.inc',
+    'file path' => drupal_get_path('module', 'xml2node'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implementation of HOOK_permission()
+ * @return array
+ */
+function xml2node_permission() {
+  return array();
+}
+
+
+/**
+ * Implementation of HOOK_theme()
+ * @return array
+ */
+function xml2node_theme() {
+  return array(
+    'xml2node_form_file_report' => array(
+      'render element' => 'form'
+    )
+  );
+}
+
+/**
+ *
+ * @param $variables
+ * @return string
+ */
+function theme_xml2node_form_file_report($variables) {
+  $form = $variables['form'];
+
+  $header = array(
+    render($form['select']),
+    t('Record #ID'),
+    t('Entity name'),
+    t('Entity type'),
+    t('Method'),
+  );
+
+  // Body
+  foreach (element_children($form['checkbox']) as $record_id) {
+    $row = array();
+    $entity_data = $form['entity_data']['#value'][$record_id];
+    $class = array('checkbox');
+
+    if($entity_data['imported']) {
+      $class[] = 'imported';
+    } else {
+      $class[] = 'not-imported';
+    }
+
+    $row[] = array('data' => render($form['checkbox'][$record_id]), 'class' => $class);
+    $row[] = array('data' => render($entity_data['id']));
+    $row[] = array('data' => render($entity_data['name']));
+    $row[] = array('data' => render($entity_data['type']));
+    $row[] = array('data' => render($entity_data['method']));
+
+    $rows[] = $row;
+  }
+
+  $output = theme('table', array(
+    'header' => $header,
+    'rows' => isset($rows) ? $rows : array(),
+    'attributes' => array('class' => array('xml2node-report')),
+    'empty' => t('No revisions found.'),
+  ));
+
+  $output .= drupal_render_children($form);
+  return $output;
+}
+
+/**
+ * Implementation of HOOK_cron_queue_info()
+ * @return array
+ */
+function xml2node_cron_queue_info() {
+  return array(
+    'xml2node_queue' => array(
+      'worker callback' => 'xml2node_queue_worker_callback',
+      'time' => variable_get('xml2node_queue_time', 10),
+    ),
+  );
+}
+
+/**
+ * Implementation of HOOK_cron()
+ *
+ * @param bool $force
+ *   Force the execution of the xml2node import, also when it's disabled in the settings
+ */
+function xml2node_cron($force = FALSE) {
+
+  if ($force || variable_get('xml2node_run_on_cron', 0)) {
+    $queue = DrupalQueue::get('xml2node_queue');
+    // delete files that are not needed anymore
+    xml2node_delete_obsolete_import_files();
+
+    // get all files to import from the hotfolders and import them using drupal queue
+    $files = xml2node_get_files_to_process();
+
+    foreach ($files as $file) {
+      rename($file, $file . '.imported');
+      xml2node_proceed_import($file . '.imported', XML2NODE_METHOD_QUEUE);
+    }
+  }
+}
+
+/**
+ * Cron queue worker callback
+ *
+ * @param data
+ */
+function xml2node_queue_worker_callback($data) {
+  $context = array();
+  entityXMLImport::importEntity($data['index'], $data['xml'], $context);
+}
+
+/**
+ * Imports all the nodes in a import cycle via batch/queue job
+ * @param $import_file
+ * @param string $method
+ * @param array $indexes
+ * @return void
+ */
+function xml2node_proceed_import($import_file, $method = XML2NODE_METHOD_BATCH, $indexes = array()) {
+  $importer = new entityXMLImport($import_file);
+  $importer->import($indexes, $method);
+}
+
+/**
+ * Callback for saving various entities
+ *
+ * @param $entity
+ * @param $filepath
+ * @param $update
+ * @return bool
+ */
+function xml2node_entity_save($entity, $filepath, $update = FALSE) {
+
+  $entity_info = entity_get_info($entity->meta['entity_name']);
+
+  if (empty($entity_info)) {
+    watchdog('x2n', t('Entity named !name does not exist in system.',
+      array('!name' => $entity->meta['entity_name'])), array('entity' => $entity), WATCHDOG_ERROR);
+
+    return FALSE;
+  }
+
+  $callback = $entity_info['save callback'];
+
+  $uri_callback = NULL;
+  if (isset($entity_info['uri callback'])) {
+    $uri_callback = $entity_info['uri callback'];
+  }
+
+  if (function_exists($callback)) {
+
+    // Let other modules alter the entity just before saving it
+    // HOOK_entity_presave is option too
+    module_invoke_all('xml2node_entity_presave', $entity);
+
+    // we cannot really assume that save callback return true or false value
+    // we will be checking 'id' instead ( this can be tricky ) while updating, ID already exists, but there is no better way
+    $callback($entity);
+    $id  = $entity_info['entity keys']['id'];
+
+    // Calling save callback for entity
+    if($id) {
+      watchdog('x2n', t('Calling save callback !callback succeeded. Entity was not created.',
+              array('!callback' => $callback)), array('entity' => $entity));
+    } else {
+      watchdog('x2n', t('Calling save callback !callback failed. Entity was not saved.',
+        array('!callback' => $callback)), array('entity' => $entity), WATCHDOG_ERROR);
+
+      return FALSE;
+    }
+
+    $eid = $entity->$entity_info['entity keys']['id'];
+    $record = array(
+      'file' => $filepath,
+      'rid' => $entity->meta['id'],
+      'eid' => $eid,
+      'entity_type' => $entity->meta['entity_name'],
+      'created' => time(),
+    );
+
+    if (!empty($uri_callback)) {
+      $uri = $uri_callback($entity);
+      $link = l(t('here'), $uri['path']);
+    }
+    else {
+      $link = t('No uri callback!');
+    }
+
+    if (isset($entity->meta['xid'])) {
+      $record['xid'] = $entity->meta['xid'];
+
+      // If content lock module is installed, check that the content is not locked on update
+      if(module_exists('content_lock') && $entity_info['base table'] == 'node' && content_lock_fetch_lock($record['xid']) !== FALSE) {
+
+        drupal_set_message(t('Entity labeled "!label" was not updated because it\'s locked. #ID: !id. Link: !link',
+          array('!label' => $entity_info['label'], '!id' => $eid, '!link' => $link)));
+
+        return TRUE;
+      }
+
+      drupal_write_record('xml_to_node', $record, 'xid');
+    }
+    else {
+
+      // If content lock module is installed, check that the content is not locked on update
+      if($update && module_exists('content_lock') && $entity_info['base table'] == 'node' && content_lock_fetch_lock($entity->nid) !== FALSE) {
+
+        drupal_set_message(t('Entity labeled "!label" was not updated because it\'s locked. #ID: !id. Link: !link',
+          array('!label' => $entity_info['label'], '!id' => $eid, '!link' => $link)));
+
+        return TRUE;
+      }
+
+      drupal_write_record('xml_to_node', $record);
+      if($update) {
+        drupal_set_message(t('Entity labeled "!label" was successfully updated. #ID: !id. Link: !link',
+                         array('!label' => $entity_info['label'], '!id' => $eid, '!link' => $link)));
+      } else {
+        drupal_set_message(t('Entity labeled "!label" was successfully imported with #ID: !id. Link: !link',
+                         array('!label' => $entity_info['label'], '!id' => $eid, '!link' => $link)));
+      }
+    }
+
+    // let modules alter the entity after saving
+    module_invoke_all('xml2node_entity_save', $entity);
+
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ * downloads a file to the temp directory
+ *
+ * @param $source A string containing a full path to the source file
+ * @param $filename A string containing a filename to use in the temp dir
+ *
+ * @return FALSE or a string containg the path to the file in the temp dir
+ */
+function xml2node_download_file_to_temp($source, $filename) {
+  // are both paths defined (current location and destination location)
+  if (isset($source) && !empty($source) && valid_url($source, TRUE)) {
+    // get the file
+    $request_result = drupal_http_request($source);
+
+    // if the file was loaded correcty, write it to the destination
+    if ($request_result->code == 200) {
+      // create the directory if it doesn't exist
+      $directory = file_directory_temp();
+
+      // check if the dir exists. if not, create it.
+      file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+      file_prepare_directory($directory, FILE_MODIFY_PERMISSIONS);
+
+      // write the file to the destination
+      if (!file_put_contents($directory . '/' . $filename, $request_result->data)) {
+        // log that there was an error saving the file
+        watchdog('xml2node', 'The file @source could not be saved to the temp directory!'
+            , array(
+          '@source' => $source,
+            ), WATCHDOG_ERROR);
+
+        return FALSE;
+      }
+
+      // free memory
+      unset($request_result);
+
+      return $directory . '/' . $filename;
+    }
+    else {
+      // log, that there was an error downloading the file
+      watchdog('xml2node', 'The file @source could not be downloaded (@status_code)!'
+          , array(
+        '@source' => $source,
+        '@status_code' => $request_result->code
+          ), WATCHDOG_ERROR);
+
+      return FALSE;
+    }
+  }
+  elseif (isset($source) && !empty($source) && valid_url($source, FALSE)) {
+    // create the directory if it doesn't exist
+    $directory = file_directory_temp();
+
+    // check if the dir exists. if not, create it.
+    file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+    file_prepare_directory($directory, FILE_MODIFY_PERMISSIONS);
+
+    // write the file to the destination
+    if (!file_copy($source, $directory)) {
+      // log that there was an error saving the file
+      watchdog('xml2node', 'The file @source could not be saved to the temp directory!'
+          , array(
+        '@source' => $source
+          ), WATCHDOG_ERROR);
+
+      return FALSE;
+    }
+
+    return $directory . '/' . $filename;
+  }
+  return FALSE;
+}

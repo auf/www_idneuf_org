@@ -299,14 +299,14 @@ img::selection, img::-moz-selection { background:transparent; }
 #header {
 	position: relative;
 	width: 100%;
-	background: url(./sites/all/themes/theme1005/images/img-header.jpg) !important;
+	background: url(../images/img-header.jpg) !important;
 	background-repeat: no-repeat !important;
 	background-size: 100% 6px !important;
 }
 .header-section-1 {/* padding:0 0 26px;*/ }
 .not-front .header-section-1 { border-bottom:1px solid #e1e1e1; }
 .header-section-1 .col1 {
-	padding:4px 0 10px 0;
+	padding:10px 0 10px 0;
 	float:left;
     width:20% !important;
 }
@@ -399,7 +399,7 @@ img::selection, img::-moz-selection { background:transparent; }
 #superfish-1 > li ul {
 	background:#ffffff;
 	display:none;
-	margin:24px 0 0px;
+	margin:-20px 0 0px;
 	border-radius: 0px;
 }
 #superfish-1 > li ul li {
@@ -408,8 +408,7 @@ img::selection, img::-moz-selection { background:transparent; }
 	float:none !important;
 	font-size:12px;
 	height:auto;
-	padding:0 5px !important;
-	width:auto !important;
+	width:100% !important;
 	text-transform:none;
 }
 #superfish-1 > li ul li > a:visited, #superfish-1 > li ul li > a {
@@ -437,23 +436,30 @@ img::selection, img::-moz-selection { background:transparent; }
 	left:101% !important;
 	top:-15px;
 }
-#superfish-1 .sf-megamenu { width:100% !important;background: #f8f8f8;}
+#superfish-1 .sf-megamenu { width:100% !important;background: #f8f8f8;border:3px solid #fff !important;}
 #superfish-1 .sf-megamenu > li > ol {
 	vertical-align:top;
 	white-space:nowrap;
+	margin: 0 auto;
+	padding: 0;
 }
 #superfish-1 .sf-megamenu > li > ol > li {
-	display: inline;
+	display: block;
 	padding:0;
 	vertical-align:top;
 	white-space:normal;
+	border-bottom: 1px solid #be1d1f;
+    width: 100% !important;
+    margin: 0 0 10px 0;
 }
-#superfish-1 .sf-megamenu > li > ol > li:first-child { margin-left:0; }
+#superfish-1 .sf-megamenu > li > ol > li:last-child{border-bottom: 1px solid transparent;}
+#superfish-1 .sf-megamenu > li > ol > li:first-child { margin:0 0 10px 0; }
 #superfish-1 .sf-megamenu > li > ol > li a {
 	color:#6f2477;
 	text-decoration:none;
 	font-weight:normal;
  display:block !important;
+ margin:10px 7px 14px 7px !important;
 }
 #superfish-1 .sf-megamenu > li > ol > li a:hover,#superfish-1 .sf-megamenu > li > ol > li a:focus{
 	color:#be1d1f;
@@ -1120,8 +1126,9 @@ option{
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)  {
 .jNiceSelectWrapper{width:68% !important;}
+.header-section-1 .col1{width:15% !important;}
 .header-section-1 .col2{padding: 28px 0 17px 0;width:85% !important;}
-#logo a img{width:130px;}
+#logo a img{width:100%;}
 #block-views-calendar-block-2 .block-content .view-display-id-block_2 .view-content .item-list ul li.views-row-last > div:nth-child(1),#block-views-calendar-block-2 .block-content .view-display-id-block_2 .view-content .item-list ul li div.views-field-created:first-child{height:auto !important;}
 .view-slider .flex-caption .slogan{font-size: 24px !important;line-height: 30px !important;}
     #superfish-1 > li{margin: 0 0 0 26px;}
@@ -1136,7 +1143,7 @@ option{
 .header-section-1 .col1{width:10%}
 #superfish-1 > li{margin:0 0 0 20px !important;}
 #superfish-1 > li > a{font-size:13px !important;}
-#logo a img{width:130px;}
+#logo a img{width:100%;}
 }
 
 
@@ -1152,11 +1159,10 @@ option{
 .jNiceSelectWrapper{width:59% !important;}
 .view-slider .flex-caption .inner{width:100% !important;}
 .header-section-1 .col2{padding:27px 0 0px 0 !important;}
-.header-section-1 .col1{width:10% !important;}
-#logo a img{width:130px;}
+.header-section-1 .col1{width:15% !important;}
+#logo a img{width:100%;}
 #superfish-1 > li{margin:0 0 0 20px !important;}
 #superfish-1 > li > a{font-size:13px !important;}
-#logo a img{width:130px;}
 }
 
 @media only screen and (min-device-width: 962px) and (max-device-width: 995px){
@@ -1189,6 +1195,6 @@ option{
 @media only screen and (min-device-width: 300px) and (max-device-width: 412px) and (orientation: landscape)  {
 #logo a img{width:100px;}
 .header-section-1 .col1{padding: 60px 0 10px 0 !important;width:30% !important;}
-.header-section-1 .col2{    padding: 70px 0 12px 0 !important;}
+.header-section-1 .col2{    padding: 67px 0 12px 0 !important;}
 .moteur-recherche .ori-oai-search{ margin: 112px 0 20px 0 !important;}
 }

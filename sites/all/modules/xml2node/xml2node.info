@@ -1,0 +1,18 @@
+name = "xml2node"
+description = "This module imports your content from predefined xml files"
+core = 7.x
+project = "xml2node"
+
+dependencies[] = entity
+
+files[] = includes/xml2node.entityXMLParser.inc
+files[] = includes/xml2node.entityXMLMapper.inc
+files[] = includes/xml2node.entityXMLImport.inc
+files[] = includes/xml2node.XMLReporter.inc
+
+; Information added by Drupal.org packaging script on 2014-02-10
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "xml2node"
+datestamp = "1392026306"
+

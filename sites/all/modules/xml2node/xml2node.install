@@ -1,0 +1,97 @@
+<?php
+
+/*
+ * @file
+ *
+ * @author Jan Azzati - Previon AG
+ * @author blueminds.eu
+ */
+
+/**
+ * Implements hook_install().
+ */
+function xml2node_install() {
+  variable_set('queue_class_xml2node_queue', 'SystemQueue');
+}
+
+/**
+ * Implementation of HOOK_schema()
+ * @return array
+ */
+function xml2node_schema() {
+
+  // We need this table to memorize ...something... ill describe later.. maybe
+  $schema['xml_to_node'] = array(
+    'description' => 'XML2Node memory',
+    'fields' => array(
+      'xid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'file' => array(
+        'description' => 'Path to file',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'rid' => array(
+        'description' => 'Entity id specified by attribute id in xml',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+      'eid' => array(
+        'description' => 'Id of Drupal entity created from xml',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+      'entity_type' => array(
+        'description' => 'Drupal entity type',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'created' => array(
+        'description' => 'Creation time',
+        'type' => 'int',
+        'unsigned' => TRUE,
+      ),
+    ),
+    'primary key' => array('xid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Add entity type field
+ */
+function xml2node_update_7001() {
+
+  db_add_field('xml_to_node', 'entity_type', array(
+    'description' => 'Drupal entity type',
+    'type' => 'varchar',
+    'length' => 255,
+    'not null' => TRUE,
+    'default' => '',
+  ));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function xml2node_uninstall() {
+  // Delete all items in the xml2node drupal queue
+  //$queue = drupal_queue_get('xml2node_queue');
+  $queue = DrupalQueue::get('xml2node_queue');
+  $queue->deleteQueue();
+  
+  // Unset all defined variables
+  variable_del('xml2node_run_on_cron');
+  variable_del('xml2node_queue_time');
+  variable_del('xml2node_hotfolders');
+  variable_del('xml2node_filepath');
+  variable_del('xml2node_count');
+  variable_del('xml2node_offset');
+  variable_del('queue_class_xml2node_queue');
+}

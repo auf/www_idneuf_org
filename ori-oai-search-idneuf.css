@@ -37,8 +37,8 @@ p,.field-type-text-with-summary{color:#888888;font-family:'Ubuntu', sans-serif !
 .panel-group .panel{border-color:transparent;}
 #ori-oai-search header{background-color:#fff !important;}
 #ori-oai-search div#form_bloc_ressource div.container{background-color:#fff !important;padding: 0;}
-#ori-oai-search div.filtres_ressource .row{display:inherit;}
-.input-group[class*=col-]{width:100% !important;margin:0 auto !important;padding:0 !important;}
+#ori-oai-search div.filtres_ressource .row{display:inherit;margin-left: -6px !important;margin-right: 0 !important;}
+.input-group[class*=col-]{width:100% !important;margin:0 auto !important;padding:0 !important; display: block;}
 div.input-group div.jNiceSelectWrapper{width:74%;float: right; padding: 0; margin: 0 auto;}
 .jNiceSelectWrapper span,.jNiceSelectWrapper div span{display:none !important;} 
 .complement_recherche{
@@ -64,10 +64,9 @@ select::-ms-expand {
 #ori-oai-search div#form_bloc_ressource .input-group .input_form{
     height: 64px !important;
     z-index: 0;
-    padding: 32px !important;
+    padding: 0px 10px !important;
     border-radius: 0px !important;
     margin: 0 auto !important;
-    padding:0;
     float: left !important;
     background-color: #eeeeee;
     width: 100%;
@@ -111,6 +110,7 @@ select::-ms-expand {
     color: #3993d2 !important;
     font-weight: 300 !important;
     border-radius:0px !important;
+    height: 37px !important;
 }
 #ori-oai-search #current-search-links .btn:nth-child(2){
     border-radius:0px !important;
@@ -118,7 +118,9 @@ select::-ms-expand {
     background-color:#3993d2 !important;
     color: #ffffff !important;
     font-weight: 300 !important;
+    height: 37px !important;
 }
+
 #ori-oai-search .label{font-weight:300 !important;color:#717272;}
 #ori-oai-search .refine-search-top-false.panel{background-color:#efefef !important;border:1px solid transparent !important;margin: 0 auto !important;min-height:380px !important;}
 #ori-oai-search .refine-search-top-false.panel #refine-search-title{background-color:#efefef !important;border:1px solid transparent !important;color:#6f2477 !important; padding:19px !important;}
@@ -132,6 +134,7 @@ select::-ms-expand {
     font-weight: normal;
     font-family: Ubuntu !important;
     font-size: 13px;
+    color:#6f2477;
 }
 #ori-oai-search a:not(.btn):hover,#ori-oai-search a:not(.btn):focus{font-weight: bold;text-decoration: underline;}
 
@@ -169,7 +172,6 @@ select::-ms-expand {
     font-size: 22px !important;
     font-weight: bold !important;
 }
-#ori-oai-search div.blog-wrapper div.element-item div.item-ressource div.body div,#ori-oai-search div.blog-wrapper div.element-item div.item-ressource div.body div span.label{color:#c2c2c2 !important;}
 #ori-oai-search div.blog-wrapper div.element-item div.item-ressource div.body div.chapo{width:100%;margin:20px 0 !important;}
 
 #ori-oai-search div.refine-search-top-false div.contenu_filtre ul.liste_filtre_niveau2{padding: 0 20px 0 20px; margin:0 auto;
@@ -186,7 +188,8 @@ select::-ms-expand {
 .fa-angle-double-down:before{content: "\f078" !important;font-size: 18px !important;}
 #ori-oai-search .fa.fa-2x{font-size: 18px !important;}
 .fa-angle-double-up:before{color: #7f3d85 !important;font-size: 29px !important;}
-#ori-oai-search .jNice button{ padding: 21px !important;background:#be1d1f !important;color:#fff !important;width:100%;border-radius:0px;    border: 1px solid #be1d1f !important;}
+#ori-oai-search div#refine-search-text-field .input-group .input-group-btn .btn{height: 36px !important;color:#fff !important;background-color: #6f2477 !important;}
+#ori-oai-search .input-group #search_valid{ padding: 21px !important;background:#be1d1f !important;color:#fff !important;width:100%;border-radius:0px;    border: 1px solid #be1d1f !important;}
 #ori-oai-search button#search_valid:before{color:#fff;margin-right:10px;content:"\f176";font-family:FontAwesome;}
 #ori-oai-search #rebound-search.panel,#ori-oai-search div#rebound-search ul#rebounds{background:#eeeeee !important;border:1px solid transparent !important;}
 #ori-oai-search #rebound-search .panel-heading{background-color:#efefef !important;border:1px solid transparent !important;color:#712379 !important;display: inline-table;}
@@ -471,7 +474,7 @@ input[type=submit]{
 #ori-oai-search div.notice-wrapper-content div.content_ressource ul li a.lien_charriot{margin-left:0px !important;color:#be1d1f !important;font-size:13px !important;}
 #ori-oai-search div.notice-wrapper-content div.content_ressource div.liste_intervenants_ressource div[role="list-item"]::before{color:#8eb53b !important;}
 #ori-oai-search div.ressource_colonne_droite div.encadre div.contenu_encadre div.bloc_image h3{text-align:left; font-weight: 500;letter-spacing: 1px;}
-#ori-oai-search div#refine-search.refine-search-top-true ul.liste_filtre_niveau1{margin-bottom:0px !important; width:100%;margin: 0 auto;
+#ori-oai-search div#refine-search.refine-search-top-true ul.liste_filtre_niveau1{margin-bottom:0px !important; width:100%;margin: -5px auto;
     padding: 0 0 0 0;}
 #ori-oai-search div#refine-search.refine-search-top-true ul.liste_filtre_niveau1 li.filtre_niveau1 > span:first-child::after{color:#be1d1f !important;}
 .csstransitions #block-views-categories-block,#block-search-form #search-block-form .container-inline, #block-search-form [id^="search-block-form"] .container-inline,#ori-oai-search  #content-header h4#page-title{display:none;}
@@ -489,11 +492,13 @@ input[type=submit]{
 #ori-oai-search div#refine-search.refine-search-top-true ul.liste_filtre_niveau1 li.filtre_niveau1{
     margin-right: 0px !important;
     margin-left:0px !important;
- padding-right:4%;
+ padding-right:2%;
  font: 14px 'Ubuntu', sans-serif !important;
     margin-bottom:0px !important;
     display: inline-block;
-    background: transparent;}
+    background: transparent;
+    color:#6f2477;
+}
  
 #ori-oai-search .refine-search-choice-field-element{font-size: 14px;padding:0px !important;text-transform:none;font-family:Ubuntu;}
 #ori-oai-search .jNice .jCheckBoxWrapper{margin:0px !important;}
@@ -515,22 +520,25 @@ input::-moz-placeholder {
     max-height: 30px;
   }
 }
+
 @media only screen and (max-device-width: 1200px){
 #ori-oai-search #advanced-buttons{top:0px !important;}
-.container-12, .container-12 .grid-12{width:100% !important;margin: 0 auto;padding: 0;}
+.container-12, .container-12 .grid-12{margin: 0;padding: 0;}
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 #ori-oai-search #current-search-content.list-group .list-group-item div#current-search-links
 {margin-left:-7px;}
-#ori-oai-search{margin:0 15px;}
-#ori-oai-search div.filtre_pagination{    margin-top: -42px !important;   margin-right: -170px !important;}
 #ori-oai-search #refine-search-text-field input#refine-search-text-field{width: 100%;}
 #ori-oai-search #main-icons .btn,#ori-oai-search #main-icons .btn:nth-child(2),#ori-oai-search #main-icons .btn:nth-child(3){margin:0 15px 0 0 !important;}
 #ori-oai-search #main-icons .btn:nth-child(3){width: 163px !important;}
+#ori-oai-search main > div > div.container{margin:0;}
+
 }
-
-
+@media only screen and (max-device-width: 768px) {
+#ori-oai-search div.filtre_pagination ul li{width: 50%;}
+body{min-width: auto !important;}
+}
 @media only screen and (min-device-width: 641px) and (max-device-width: 733px) {
 #ori-oai-search div.refine-search-top-true div.contenu_filtre{
     margin-left: -10223px !important;
@@ -561,7 +569,8 @@ input::-moz-placeholder {
 @media only screen and (max-device-width: 425px) {
 #ori-oai-search div#form_bloc_ressource .input-group .col-md-8, #ori-oai-search div#form_bloc_ressource .input-group .col-lg-8{padding:0;position:relative;}
 .filtres_liste{height:auto !important;}
-}@media only screen and (max-device-width: 320px) {
+}
+@media only screen and (max-device-width: 320px) {
 .jNiceSelectWrapper{width:78% !important;}
 #ori-oai-search div.refine-search-top-true div.contenu_filtre{padding-left:9924px !important;}
 }

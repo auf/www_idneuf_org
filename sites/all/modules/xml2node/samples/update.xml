@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    
+<!-- All entity elements -->
+<entities>
+  <!-- Each entity attributes:
+     name -> required, entity name ( node, comment, taxonomy_term, user, ... )
+     type -> required, entity bundle ( node -> article, basic_page, ... )
+     id -> required(!!!important!!!), record id, this serves as primary identifier for dependency references
+        -> each entity need this field
+        -> can be any value you choose
+     method -> not required, decides what operation will be performed.
+            -> possible values "create" (default), "delete", "update"
+            -> if "delete" or "update", importer will expect that conditions for selecting entity(ies) will be
+            defined
+   -->
+  <entity name="node" type="article" id="10" method = "update">
+    <!-- Conditions for selecting entities in case of "delete" and "update" acton -->
+    <!-- EntityFieldQuery object is created and all conditions are passed to this object -->
+    <!-- In case of "create" not required -->
+    <conditions>
+      <!--
+        -> in case of "type=property"
+        -> name -> required, represents "name" of entity property
+        -> read documentation on EntityFieldQuery->propertyCondition
+       -->
+      <condition type="property" name="title">A sample Title 1</condition>
+      <!--
+        -> in case of "type=field"
+        -> name -> required, represents entity field name
+        -> column -> not required, represents column name defined in field schema
+        -> lang -> not required, represents language of field
+        -> delta -> not required, represents item delta of field
+        -> read documentation on EntityFieldQuery->propertyCondition
+       -->
+      <condition type="field" name="body" column="format">1</condition>
+    </conditions>
+
+    <!-- Define entity properties -->
+    <properties>
+      <!-- name-> required -> Name of property -->
+      <property name="type">article</property>
+      <property name="title">Another title</property>
+    </properties>
+    
+    <!-- Define entity fields -->
+    <fields>
+      <field name="body">
+        <lang name="und">
+          <item>
+            <value name="value">This is tottaly different body, i swear!</value>
+            <value name="format">1</value>
+          </item>
+        </lang>
+      </field>
+    </fields>
+  </entity>
+</entities>

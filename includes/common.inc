@@ -2222,7 +2222,7 @@ function url($path = NULL, array $options = array()) {
   $options += array(
     'fragment' => '',
     'query' => array(),
-    'absolute' => FALSE,
+    'absolute' => TRUE,
     'alias' => FALSE,
     'prefix' => ''
   );

@@ -105,7 +105,7 @@
 		<!-- Node content -->
 		<?php print render( $content ); ?>
 	</div>
-		<?php if ( $display_submitted ) : ?>
+<!--<?php if ( $display_submitted ) : ?>
 				<div class="submitted node-submitted" role="contentinfo">
 					<ul class="submitted-list clearfix">
            	<?php   if ( $submitted_pubdate ) : // publish date ?>
@@ -122,14 +122,14 @@
 	
 						<?php if ( $submitted ) : // node author ?>
 							<li class="node-author"><span class="fa fa-fw fa-user"></span> <?php print $submitted; ?></li>
-						<?php endif; ?>
+						<?php endif; ?> 
 	
 						
-					<!-- 	<li class="node-views">
+						<li class="node-views">
 							<span class="fa fa-fw fa-eye"></span>
 							<?php print $hitcount['totalcount'] ? $hitcount['totalcount'] : "0"; // node views
 							print " view(s)"; ?>
-						</li>-->
+						</li>
 	
 				 
 							<li class="node-comments">
@@ -139,11 +139,11 @@
 			
 					</ul>
 				</div>
-			<?php endif; ?>
-      <div class="Partager col-md-12">
-      <div class="labelpartage col-md-2">Partager !</div>
+			<?php endif; ?>-->
+      <div class="Partager col-xs-12 col-md-12 col-lg-12">
+      <div class="labelpartage col-xs-12 col-md-2 col-lg-2">Partager !</div>
       <!-- AddThis Button BEGIN -->
-<div class="col-md-9 addthis_toolbox addthis_default_style addthis_32x32_style">
+<div class="col-xs-12 col-md-9 col-lg-9 addthis_toolbox addthis_default_style addthis_32x32_style">
 <a class="addthis_button_facebook" title="Facebook"></a>
 <a class="addthis_button_twitter" title="Twitter"></a>
 <a class="addthis_button_pinterest_share" title="pinterest"></a>
@@ -154,19 +154,8 @@
 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4dedda0c245832a7"></script>
 <!-- AddThis Button END -->
   </div>    
-	<?php if ( !empty( $content['field_tags'] ) || !empty( $content['links'] ) ) : ?>
-		<footer class="footer node-footer" role="contentinfo">
-			<!-- Node tags -->
-			<?php print render( $content['field_tags'] ); ?>
-			
-			<!-- Node links -->
-			<!--	<?php if ( $links = render( $content['links'] ) ): ?>
-				<div class="node-links clearfix">
-					<?php print $links; ?>
-				</div>
-			<?php endif; ?>-->
-		</footer>
-	<?php endif;
+
+	<?php
 
 	print render( $content['comments'] ); ?>
 </div>
