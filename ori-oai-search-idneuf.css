@@ -67,6 +67,7 @@ div.input-group div.jNiceSelectWrapper{width:74%;float: right; padding: 0; margi
     background-color: #eeeeee;
     width: 100%;
 }
+#ori-oai-search .btn-primary{background-color:#6f2477 !important; border-color: #6f2477 !important;color:#fff !important;}
 #ori-oai-search div#form_bloc_ressource .input-group .input-group-addon {
     padding: 0px !important;
     height: auto !important;
@@ -151,7 +152,7 @@ div.input-group div.jNiceSelectWrapper{width:74%;float: right; padding: 0; margi
     padding: 8px !important;
     /* margin: -1px; */
     position: absolute !important;
-    top: 247px !important;
+    top: 248px !important;
     /* z-index: 1000; */
     right: 16px !important;
 }
@@ -516,7 +517,7 @@ input[type=submit]{
 
 @media only screen and (max-width: 1200px){
 #ori-oai-search #advanced-buttons{top:0px !important;}
-.container-12 .grid-12{width:100% !important;margin: 0;padding: 0;}
+.csstransforms .container-12 .grid-12{width:100% !important;margin: 0;padding: 0;}
 #ori-oai-search div.filtre_pagination{margin-right: -17px !important;}
 }
 
