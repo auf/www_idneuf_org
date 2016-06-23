@@ -1,11 +1,11 @@
 @import url(//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic);
 @import url(//fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);
-@import url("./boilerplate.css?o4uv8h");
-@import url("./maintenance-page.css?o4uv8h");
-@import url("./skeleton.css?o4uv8h");
-@import url("./skeleton-mobile.css");
-@import url("./style-mobile.css");
+@import url("http://www.idneuf.org/sites/all/themes/theme1005/css/boilerplate.css?o4uv8h");
+@import url("http://www.idneuf.org/sites/all/themes/theme1005/css/maintenance-page.css?o4uv8h");
+@import url("http://www.idneuf.org/sites/all/themes/theme1005/css/skeleton.css?o4uv8h");
+@import url("http://www.idneuf.org/sites/all/themes/theme1005/css/skeleton-mobile.css");
+@import url("http://www.idneuf.org/sites/all/themes/theme1005/css/style-mobile.css");
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 
 <script type="text/javascript" src="http://www.idneuf.org/sites/all/modules/jquery_update/replace/jquery/1.8/jquery.min.js?v=1.8.3"></script>
