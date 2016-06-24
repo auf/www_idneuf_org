@@ -1862,7 +1862,7 @@ option{
 
 }
 @media only screen and (max-device-width: 768px){
-
+.page-calendar-created-day .views-row-odd .views-field-title{min-height:66px;}
 .calendar-calendar .month-view:after{display: none;}
 .page-utiliser-ressource .page-title{height:auto !important;}
 .Partager .col-md-9{margin-left:0px !important;position:relative !important;}
@@ -1870,4 +1870,9 @@ option{
 }
 @media only screen and (max-device-width: 426px){
 #ori-oai-search div.refine-search-top-true div.contenu_filtre{padding-left: 10076px !important;}
+.node-type-agenda .content-header{width:100% !important;margin:35px 0 50px 0 !important;}
+.page-calendar-created-day .views-row-odd .views-field-title{min-height:90px;}
+@media only screen and (max-device-width: 335px){
+.node-type-agenda .content-header{width:100% !important;margin:12px 0 50px 0 !important;}
+.page-calendar-created-day .views-row-odd .views-field-title{min-height:107px;}
 }
