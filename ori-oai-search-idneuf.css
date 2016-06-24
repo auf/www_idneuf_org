@@ -520,7 +520,9 @@ input[type=submit]{
 .csstransforms .container-12 .grid-12{width:100% !important;margin: 0;padding: 0;}
 #ori-oai-search div.filtre_pagination{margin-right: -17px !important;}
 }
-
+@media only screen and (max-device-width: 1024px) {
+.form-horizontal .form-group{margin-right:0px !important;}
+}
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 #ori-oai-search #current-search-content.list-group .list-group-item div#current-search-links
 {margin-left:-7px;}
@@ -533,6 +535,7 @@ input[type=submit]{
 @media only screen and (max-device-width: 768px) {
 #ori-oai-search div.filtre_pagination ul li{width: 50%;}
 body{min-width: auto !important;}
+#ori-oai-search div#form_bloc_ressource .input-group .col-xs-12, #ori-oai-search div#form_bloc_ressource .input-group .col-xs-12{margin:0 auto;padding:0;position:relative;}
 }
 @media only screen and (min-device-width: 641px) and (max-device-width: 733px) {
 #ori-oai-search div.refine-search-top-true div.contenu_filtre{
@@ -543,8 +546,6 @@ body{min-width: auto !important;}
 
 @media only screen and (min-device-width: 600px) and (max-device-width: 960px) {
 #ori-oai-search div.filtre_pagination{margin-top:0 !important;margin-left:0 !important;}
-
-
 }
 
 
@@ -556,6 +557,7 @@ body{min-width: auto !important;}
 .front .view-services h5{height:auto;}
 .filtres_liste{height:auto !important;}
 #ori-oai-search div#form_bloc_ressource .input-group .col-xs-12, #ori-oai-search div#form_bloc_ressource .input-group .col-xs-12{padding:0;position:relative;height:80px;}
+#ori-oai-search div.notice-wrapper-content div.lien_partage_ressource span,#ori-oai-search div.notice-wrapper-content div.lien_partage_ressource ul.liste_liens_partager,#ori-oai-search div.notice-wrapper-content div.lien_partage_ressource ul.liste_liens_partager li.lien_partager{background:#5e91cd !important;}
 #ori-oai-search #current-search-content.list-group .list-group-item div#current-search-links{margin-left:0px;}
 }
 @media only screen and (max-device-width: 640px) {
@@ -568,4 +570,5 @@ body{min-width: auto !important;}
 @media only screen and (max-device-width: 320px) {
 .jNiceSelectWrapper{width:78% !important;}
 #ori-oai-search div.refine-search-top-true div.contenu_filtre{padding-left:9924px !important;}
+#ori-oai-search #advanced-form #advanced-language .panel-group .panel-body{padding:0 !important;margin:0 auto;}
 }
