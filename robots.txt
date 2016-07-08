@@ -15,6 +15,7 @@
 
 User-agent: *
 Crawl-delay: 10
+Disallow: /
 # Directories
 Disallow: /includes/
 Disallow: /misc/
